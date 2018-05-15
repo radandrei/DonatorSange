@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataAccessLayer.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,7 +9,7 @@ namespace BusinessLayer.Models
     {
         public RoleModel(Role role)
         {
-            ID = role.ID;
+            Id = role.Id;
             Name = role.Name;
         }
 
@@ -16,7 +17,7 @@ namespace BusinessLayer.Models
         {
 
         }
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
     }
 }

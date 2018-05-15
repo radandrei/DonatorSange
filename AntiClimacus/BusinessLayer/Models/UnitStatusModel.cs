@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataAccessLayer.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -9,7 +10,7 @@ namespace BusinessLayer.Models
         public UnitStatusModel(UnitStatus unit)
         {
 
-            ID = unit.ID;
+            Id = unit.Id;
             Name = unit.Name;
         }
 
@@ -17,8 +18,8 @@ namespace BusinessLayer.Models
         {
 
         }
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
     }
 }
-}
+

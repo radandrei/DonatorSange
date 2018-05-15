@@ -7,7 +7,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Security.Claims;
 using Newtonsoft.Json;
-using System.Linq;
 using AntiClimacus.Models;
 using Kosmos.Helpers;
 using Kosmos.Models;
@@ -82,7 +81,6 @@ namespace AntiClimacus.Controllers
         }
 
         [HttpGet("[action]")]
-        [Authorize(Policy = "Patient")]
         public IActionResult Register(string returnUrl = null)
         {
             return new OkObjectResult("Well played, friend");
@@ -236,7 +234,7 @@ namespace AntiClimacus.Controllers
 
             // check the credentials
 
-            return await Task.FromResult(_jwtFactory.GenerateClaimsIdentity(userName, userToVerify.ID, userToVerify.Role.Name));
+            return await Task.FromResult(_jwtFactory.GenerateClaimsIdentity(userName, userToVerify.Id, userToVerify.Role.Name));
 
         }
 

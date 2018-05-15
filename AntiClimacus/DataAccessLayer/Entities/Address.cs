@@ -11,6 +11,6 @@ namespace DataAccessLayer.Entities
         public string Street { get; set; }
         public int Number { get; set; }
 
-        public ICollection<User> Users{ get; set; }
+        public ICollection<Donor> Users{ get; set; }
     }
 }

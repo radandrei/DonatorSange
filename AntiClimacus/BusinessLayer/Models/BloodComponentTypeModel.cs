@@ -1,23 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using DataAccessLayer.Entities;
 
 namespace BusinessLayer.Models
 {
     class BloodComponentTypeModel
     {
-        public int ID { get; set; }
-        public BloodComponentModel BloodComponentId { get;set; }
-
-        public BloodTypeModel BloodTypetId { get; set; }
-
-
+        public int Id { get; set; }
+        public BloodComponentModel BloodComponent { get;set; }
+        public BloodTypeModel BloodType { get; set; }
 
         public BloodComponentTypeModel (BloodComponentType blood)
         {
-            ID = blood.ID;
-            BloodTypetId = new BloodTypeModel(blood.BloodTypetId);
-            BloodComponentId = new BloodComponentTypeModel(blood.BloodComponentId);
+            Id = blood.Id;
+            BloodType = new BloodTypeModel(blood.BloodType);
+            BloodComponent = new BloodComponentModel(blood.BloodComponent);
        
 
         }

@@ -9,9 +9,9 @@ namespace DataAccessLayer.Entities
         public int Id { get; set; }
         public int DonorId { get; set; }
         public int Weight { get; set; }
-        public int Gender { get; set; }
+        public string Gender { get; set; }
         public string Email { get; set; }
-        public int Phone { get; set; }
+        public string Phone { get; set; }
         public DateTime Birthdate { get; set; }
         public int BloodTypeId { get; set; }
 
