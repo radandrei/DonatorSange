@@ -4,3 +4,8 @@ AntiClimacus/.vs/AntiClimacus/v15/Server/sqlite3/storage.ide-wal
 AntiClimacus/.vs/AntiClimacus/v15/Server/sqlite3/storage.ide-shm
 AntiClimacus/.vs/AntiClimacus/v15/Server/sqlite3/storage.ide
 AntiClimacus/.vs/AntiClimacus/DesignTimeBuild/.dtbcache
+*.pdb
+*.dll
+AntiClimacus/BusinessLayer/bin/Debug/netcoreapp2.0/BusinessLayer.deps.json
+*.CopyComplete
+AntiClimacus/BusinessLayer/obj/Debug/netcoreapp2.0/BusinessLayer.csproj.FileListAbsolute.txt
