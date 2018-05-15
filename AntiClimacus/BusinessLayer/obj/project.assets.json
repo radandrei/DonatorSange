@@ -673,11 +673,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\pici\\source\\repos\\AntiClimacus\\BusinessLayer\\BusinessLayer.csproj",
+      "projectUniqueName": "C:\\Users\\pici\\Documents\\DonatorSange\\AntiClimacus\\BusinessLayer\\BusinessLayer.csproj",
       "projectName": "BusinessLayer",
-      "projectPath": "C:\\Users\\pici\\source\\repos\\AntiClimacus\\BusinessLayer\\BusinessLayer.csproj",
+      "projectPath": "C:\\Users\\pici\\Documents\\DonatorSange\\AntiClimacus\\BusinessLayer\\BusinessLayer.csproj",
       "packagesPath": "C:\\Users\\pici\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pici\\source\\repos\\AntiClimacus\\BusinessLayer\\obj\\",
+      "outputPath": "C:\\Users\\pici\\Documents\\DonatorSange\\AntiClimacus\\BusinessLayer\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

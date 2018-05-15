@@ -1,0 +1,13 @@
+C:\Users\pici\Documents\DonatorSange\AntiClimacus\AntiClimacus\bin\Debug\netcoreapp2.0\AntiClimacus.deps.json
+C:\Users\pici\Documents\DonatorSange\AntiClimacus\AntiClimacus\bin\Debug\netcoreapp2.0\AntiClimacus.runtimeconfig.json
+C:\Users\pici\Documents\DonatorSange\AntiClimacus\AntiClimacus\bin\Debug\netcoreapp2.0\AntiClimacus.runtimeconfig.dev.json
+C:\Users\pici\Documents\DonatorSange\AntiClimacus\AntiClimacus\bin\Debug\netcoreapp2.0\AntiClimacus.dll
+C:\Users\pici\Documents\DonatorSange\AntiClimacus\AntiClimacus\bin\Debug\netcoreapp2.0\AntiClimacus.pdb
+C:\Users\pici\Documents\DonatorSange\AntiClimacus\AntiClimacus\bin\Debug\netcoreapp2.0\DataAccessLayer.dll
+C:\Users\pici\Documents\DonatorSange\AntiClimacus\AntiClimacus\bin\Debug\netcoreapp2.0\DataAccessLayer.pdb
+C:\Users\pici\Documents\DonatorSange\AntiClimacus\AntiClimacus\obj\Debug\netcoreapp2.0\AntiClimacus.csprojResolveAssemblyReference.cache
+C:\Users\pici\Documents\DonatorSange\AntiClimacus\AntiClimacus\obj\Debug\netcoreapp2.0\AntiClimacus.csproj.CoreCompileInputs.cache
+C:\Users\pici\Documents\DonatorSange\AntiClimacus\AntiClimacus\obj\Debug\netcoreapp2.0\AntiClimacus.AssemblyInfoInputs.cache
+C:\Users\pici\Documents\DonatorSange\AntiClimacus\AntiClimacus\obj\Debug\netcoreapp2.0\AntiClimacus.AssemblyInfo.cs
+C:\Users\pici\Documents\DonatorSange\AntiClimacus\AntiClimacus\obj\Debug\netcoreapp2.0\AntiClimacus.dll
+C:\Users\pici\Documents\DonatorSange\AntiClimacus\AntiClimacus\obj\Debug\netcoreapp2.0\AntiClimacus.pdb

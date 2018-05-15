@@ -3350,11 +3350,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\pici\\source\\repos\\AntiClimacus\\DataAccessLayer\\DataAccessLayer.csproj",
+      "projectUniqueName": "C:\\Users\\pici\\Documents\\DonatorSange\\AntiClimacus\\DataAccessLayer\\DataAccessLayer.csproj",
       "projectName": "DataAccessLayer",
-      "projectPath": "C:\\Users\\pici\\source\\repos\\AntiClimacus\\DataAccessLayer\\DataAccessLayer.csproj",
+      "projectPath": "C:\\Users\\pici\\Documents\\DonatorSange\\AntiClimacus\\DataAccessLayer\\DataAccessLayer.csproj",
       "packagesPath": "C:\\Users\\pici\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pici\\source\\repos\\AntiClimacus\\DataAccessLayer\\obj\\",
+      "outputPath": "C:\\Users\\pici\\Documents\\DonatorSange\\AntiClimacus\\DataAccessLayer\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
