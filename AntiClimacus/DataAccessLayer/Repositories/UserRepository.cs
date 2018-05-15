@@ -1,5 +1,7 @@
 ﻿using BusinessLayer.Interfaces;
 using DataAccessLayer;
+using DataAccessLayer.Data;
+using DataAccessLayer.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +10,9 @@ namespace BusinessLayer
 {
     public class UserRepository : IUserRepository
     {
-        private MedicalDBContext context;
+        private BloodContext context;
 
-        public UserRepository(MedicalDBContext context)
+        public UserRepository(BloodContext context)
         {
             this.context = context;
         }
@@ -61,8 +63,7 @@ namespace BusinessLayer
 
         public User GetById(int id)
         {
-            return context.Users.Where(x => x.Id == id).Include(z => z.Role).Include(y => y.Person).Include(a => a.Person.PersonalData)
-                .Include(b => b.Person.MedicalChart).Include(c => c.Person.Cabinet)
+            return context.Users.Where(x => x.Id == id).Include(z => z.Role).Include(y => y.Donor).Include(a => a.Donor.DonorData)
                 .AsNoTracking().FirstOrDefault();
         }
 

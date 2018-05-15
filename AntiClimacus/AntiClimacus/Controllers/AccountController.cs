@@ -9,11 +9,12 @@ using System.Security.Claims;
 using Newtonsoft.Json;
 using System.Linq;
 using AntiClimacus.Models;
-using BusinessLayer.Service;
 using Kosmos.Helpers;
 using Kosmos.Models;
 using AntiClimacus.Models.AccountViewModels;
 using login_model.Models.AccountViewModels;
+using BusinessLayer.Service;
+using DataAccessLayer.Data;
 
 namespace AntiClimacus.Controllers
 {
@@ -23,14 +24,14 @@ namespace AntiClimacus.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger _logger;
         private readonly UserService userService;
-        private MedicalDBContext _context;
+        private BloodContext _context;
         private readonly IJwtFactory _jwtFactory;
         private readonly JwtIssuerOptions _jwtOptions;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             ILogger<AccountController> logger,
-            MedicalDBContext context,
+            BloodContext context,
             IJwtFactory jwtFactory,
             IOptions<JwtIssuerOptions> jwtOptions)
         {

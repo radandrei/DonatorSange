@@ -1,8 +1,8 @@
 ﻿using BusinessLayer.Interfaces;
-using BusinessLayer.Models;
 using DataAccessLayer;
+using DataAccessLayer.Data;
+using DataAccessLayer.Entities;
 using DataAccessLayer.Helpers;
-using DataAccessLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,7 +13,7 @@ namespace BusinessLayer.Service
     {
         private IUserRepository userRepository;
 
-        public UserService(MedicalDBContext context)
+        public UserService(BloodContext context)
         {
             userRepository = new UserRepository(context);
         }
