@@ -4,61 +4,65 @@ import { ConfigService } from '../utils/config.service';
 import { Observable } from 'rxjs/Rx';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Donor } from '../models/donor';
+import { DonorData } from '../models/donorData';
 
 
 
 @Injectable()
 
-export class RequestService {
+export class DonorService {
+
   baseUrl: string = '';
-  RequestUrl;
+  DonorUrl;
 
 
   constructor(private http: HttpClient, private configService: ConfigService, private router: Router) {
     this.baseUrl = configService.getApiURI();
-    this.RequestUrl = this.baseUrl + "/Request";
+    this.DonorUrl = this.baseUrl + "/Donor";
   }
 
-  extractData(result: Response): Request[] {
+  extractData(result: Response): Donor[] {
     return result.json();
   }
 
-
-  add(body): Observable<Request> {
+  add(body): Observable<Donor> {
 
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
 
-    return this.http.post<Request>(this.RequestUrl + "/add", body, httpOptions);
+    return this.http.post<Donor>(this.DonorUrl + "/add", body, httpOptions);
 
   }
-
 
   loginFailed(error: any): Promise<boolean> {
     return Promise.resolve(false);
   }
 
-  deleteRequest(id) {
-    this.http.delete(this.RequestUrl + "/delete/" + id)
+  deleteDonor(id) {
+    this.http.delete(this.DonorUrl + "/delete/" + id)
       .toPromise()
       .then()
       .catch(this.loginFailed);
   }
 
-  getRequests(id: number | string): Observable<Request[]> {
-    return this.http.get<Request[]>(this.RequestUrl + "/getbyuser/" + id);
+  getDonors(): Observable<Donor[]> {
+    return this.http.get<Donor[]>(this.DonorUrl + "/getall");
   }
 
-  getAllRequests(id: number | string): Observable<Request[]> {
-    return this.http.get<Request[]>(this.RequestUrl + "/getallbydonationcenter/" + id);
+  getDonor(donorId):Observable<Donor>{
+    return this.http.get<Donor>(this.DonorUrl+"/getbyid/"+donorId);
   }
 
-  addRequest(request: Request): Observable<boolean> {
+
+  updateDonorData(donorData:DonorData){
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    return this.http.post<boolean>(this.RequestUrl + "/addRequest", request, httpOptions);
-  }
+    
+    const body=JSON.stringify(donorData);
+    return this.http.post(this.DonorUrl+"/updateDonorData",body,httpOptions);
 
+  }
 }
