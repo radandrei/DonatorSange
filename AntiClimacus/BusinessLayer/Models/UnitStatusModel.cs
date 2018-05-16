@@ -5,19 +5,31 @@ using System.Text;
 
 namespace BusinessLayer.Models
 {
-    class UnitStatusModel
+    public class StatusModel
     {
-        public UnitStatusModel(UnitStatus unit)
+        public StatusModel(Status unit)
         {
 
             Id = unit.Id;
             Name = unit.Name;
         }
 
-        public UnitStatusModel()
+        public StatusModel()
         {
 
         }
+
+        public StatusModel(int statusId)
+        {
+            Id = statusId;
+        }
+
+        public StatusModel(StatusModel statusModel)
+        {
+            Id = statusModel.Id;
+            Name = statusModel.Name;
+        }
+
         public int Id { get; set; }
         public string Name { get; set; }
     }

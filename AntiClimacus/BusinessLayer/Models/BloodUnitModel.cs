@@ -12,7 +12,6 @@ namespace BusinessLayer.Models
 
             Id = unit.Id;
             DateAdded = unit.DateAdded;
-            StatusId = new UnitStatusModel(unit.Status);
         }
 
         public BloodUnitModel()
@@ -21,6 +20,5 @@ namespace BusinessLayer.Models
         }
         public int Id { get; set; }
         public DateTime DateAdded { get; set; }
-        public UnitStatusModel StatusId { get; set; }
     }
 }

@@ -4,12 +4,9 @@ using System.Text;
 
 namespace DataAccessLayer.Entities
 {
-    public class BloodUnit
+    public class Gender
     {
         public int Id { get; set; }
-        public DateTime DateAdded { get; set; }
-        public int DonorId { get; set; }
-
-        public Donor Donor { get; set; }
+        public string Name { get; set; }
     }
 }

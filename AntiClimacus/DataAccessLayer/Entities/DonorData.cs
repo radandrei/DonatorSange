@@ -10,7 +10,13 @@ namespace DataAccessLayer.Entities
         public int DonorId { get; set; }
         public int Weight { get; set; }
         public int BloodTypeId { get; set; }
-        public bool CanDonate { get; set; }
+        public int Heartbeat { get; set; }
+        public int BloodPressure { get; set; }
+        public bool Interventions { get; set; }
+        public bool FeminineProblems { get; set; }
+        public bool JunkFood { get; set; }
+        public bool OnDrugs { get; set; }
+        public bool Diseases { get; set; }
 
         public BloodType BloodType { get; set; }
         public Donor Donor { get; set; }
