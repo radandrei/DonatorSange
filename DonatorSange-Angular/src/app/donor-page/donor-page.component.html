@@ -1,0 +1,52 @@
+<head>
+    <link rel="stylesheet" href="./donor-page.component.css">
+</head>
+<div class="header-part">
+  <div class="logout-button">
+    <button type=submit mat-button (click)='logout()'> Logout </button>
+  </div>
+  <div class="menu">
+
+</div>
+
+<body>
+<form method="POST">
+<div class="donation-container">
+            
+            <div class="donation-box">
+              <div class="title"><h2>I want to donate</h2></div>
+              <div style="text-align:left; font:caption"><h4>Identity data</h4></div>
+	          
+	            <div class="fields">
+		            <input type="text" id="firstName" placeholder="First Name"> </input>
+                <input type="text" id="lastName" placeholder="Last Name"> </input>
+                <br>
+                <label for="bday" id="birthday">Enter your birthday:</label>
+                <input type="date" id="bday" name="bday" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}">
+                <input type="text" id="city" placeholder="City"></input>
+                <input type="text" id="country" placeholder="Country"></input>
+                <input type="text" id="county" placeholder="County"></input>
+                <input type="text" id="number" placeholder="Number"></input>
+                <input type="text" id="street" placeholder="Street"></input>
+              </div>
+              
+	            
+              <label>Date de contact</label>
+              <br>
+              <input type="text" id="mail" placeholder="Adresa de e-mail"></input>
+              <input type="text" id="telefon" placeholder="Telefon"></input>  
+              <br> 
+            
+              <div class="button">
+                <div>
+                  <button type="submit" class="button-donate" mat-button (click)='donate()'> Donate now </button>
+                </div>
+                <div>
+                  <button type="submit" class="button-save" mat-button (click)='save()'> Save dates </button>
+                </div>
+              </div>
+	          </div>
+</div>
+        
+</form>
+</body>
