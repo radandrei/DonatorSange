@@ -25,6 +25,10 @@ namespace DataAccessLayer.Data
         public DbSet<RequestStatus> RequestStatuses { get; set; }
         public DbSet<UnitStatus> UnitStatuses { get; set; }
         public DbSet<BloodUnit> BloodUnits { get; set; }
+        public DbSet<DonationRequest> DonationRequests { get; set; }
+        public DbSet<Donation> Donations { get; set; }
+        public DbSet<BloodTest> BloodTests { get; set; }
+        public DbSet<Condition> Conditions { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -40,6 +44,10 @@ namespace DataAccessLayer.Data
             modelBuilder.Entity<RequestStatus>().ToTable("RequestStatus");
             modelBuilder.Entity<UnitStatus>().ToTable("UnitStatus");
             modelBuilder.Entity<BloodUnit>().ToTable("BloodUnit");
+            modelBuilder.Entity<DonationRequest>().ToTable("DonationRequest");
+            modelBuilder.Entity<Donation>().ToTable("Donation");
+            modelBuilder.Entity<BloodTest>().ToTable("BloodTest");
+            modelBuilder.Entity<Condition>().ToTable("Condition");
         }
     }
 }

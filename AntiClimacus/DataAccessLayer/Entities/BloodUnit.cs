@@ -9,7 +9,9 @@ namespace DataAccessLayer.Entities
         public int Id { get; set; }
         public DateTime DateAdded { get; set; }
         public int StatusId { get; set; }
+        public int DonorId { get; set; }
 
+        public Donor Donor { get; set; }
         public UnitStatus Status { get; set; }
     }
 }
