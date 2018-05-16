@@ -29,6 +29,7 @@ namespace DataAccessLayer.Data
         public DbSet<Donation> Donations { get; set; }
         public DbSet<BloodTest> BloodTests { get; set; }
         public DbSet<Condition> Conditions { get; set; }
+        public DbSet<DonationCenter> DonationCenters { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -48,6 +49,7 @@ namespace DataAccessLayer.Data
             modelBuilder.Entity<Donation>().ToTable("Donation");
             modelBuilder.Entity<BloodTest>().ToTable("BloodTest");
             modelBuilder.Entity<Condition>().ToTable("Condition");
+            modelBuilder.Entity<DonationCenter>().ToTable("DonationCenter");
         }
     }
 }
