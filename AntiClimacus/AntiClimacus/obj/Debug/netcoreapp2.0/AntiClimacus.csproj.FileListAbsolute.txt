@@ -1,0 +1,11 @@
+C:\Users\Andrei\Documents\IMMYOWNBOSS\AntiClimacus\AntiClimacus\bin\Debug\netcoreapp2.0\AntiClimacus.deps.json
+C:\Users\Andrei\Documents\IMMYOWNBOSS\AntiClimacus\AntiClimacus\bin\Debug\netcoreapp2.0\AntiClimacus.runtimeconfig.json
+C:\Users\Andrei\Documents\IMMYOWNBOSS\AntiClimacus\AntiClimacus\bin\Debug\netcoreapp2.0\AntiClimacus.runtimeconfig.dev.json
+C:\Users\Andrei\Documents\IMMYOWNBOSS\AntiClimacus\AntiClimacus\bin\Debug\netcoreapp2.0\AntiClimacus.dll
+C:\Users\Andrei\Documents\IMMYOWNBOSS\AntiClimacus\AntiClimacus\obj\Debug\netcoreapp2.0\AntiClimacus.csprojAssemblyReference.cache
+C:\Users\Andrei\Documents\IMMYOWNBOSS\AntiClimacus\AntiClimacus\obj\Debug\netcoreapp2.0\AntiClimacus.csproj.CoreCompileInputs.cache
+C:\Users\Andrei\Documents\IMMYOWNBOSS\AntiClimacus\AntiClimacus\obj\Debug\netcoreapp2.0\AntiClimacus.AssemblyInfoInputs.cache
+C:\Users\Andrei\Documents\IMMYOWNBOSS\AntiClimacus\AntiClimacus\obj\Debug\netcoreapp2.0\AntiClimacus.AssemblyInfo.cs
+C:\Users\Andrei\Documents\IMMYOWNBOSS\AntiClimacus\AntiClimacus\bin\Debug\netcoreapp2.0\AntiClimacus.pdb
+C:\Users\Andrei\Documents\IMMYOWNBOSS\AntiClimacus\AntiClimacus\obj\Debug\netcoreapp2.0\AntiClimacus.dll
+C:\Users\Andrei\Documents\IMMYOWNBOSS\AntiClimacus\AntiClimacus\obj\Debug\netcoreapp2.0\AntiClimacus.pdb

@@ -3341,26 +3341,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\pici\\.nuget\\packages\\": {},
+    "C:\\Users\\Andrei\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
-    "restoreSettings": {
-      "hideWarningsAndErrors": true
-    },
     "restore": {
-      "projectUniqueName": "C:\\Users\\pici\\source\\repos\\AntiClimacus\\DataAccessLayer\\DataAccessLayer.csproj",
+      "projectUniqueName": "C:\\Users\\Andrei\\Documents\\IMMYOWNBOSS\\AntiClimacus\\DataAccessLayer\\DataAccessLayer.csproj",
       "projectName": "DataAccessLayer",
-      "projectPath": "C:\\Users\\pici\\source\\repos\\AntiClimacus\\DataAccessLayer\\DataAccessLayer.csproj",
-      "packagesPath": "C:\\Users\\pici\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pici\\source\\repos\\AntiClimacus\\DataAccessLayer\\obj\\",
+      "projectPath": "C:\\Users\\Andrei\\Documents\\IMMYOWNBOSS\\AntiClimacus\\DataAccessLayer\\DataAccessLayer.csproj",
+      "packagesPath": "C:\\Users\\Andrei\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Andrei\\Documents\\IMMYOWNBOSS\\AntiClimacus\\DataAccessLayer\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\pici\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Andrei\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

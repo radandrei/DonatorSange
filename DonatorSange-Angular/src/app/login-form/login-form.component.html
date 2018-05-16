@@ -1,0 +1,14 @@
+<div class="login-page">
+  <div class="logo"></div>
+  <div class="form">
+    <form class="login-form">
+      <label *ngIf="invalid" id="invalid">Invalid credentials</label>
+      <label id="errors">{{errors}}</label>
+      <input #userName type="text" placeholder="Username"/>
+      <input #password type="password" placeholder="Password" />
+      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+      <button type='submit' (click)='login(userName.value,password.value)'>login</button>
+    
+    </form>
+  </div>
+</div>
