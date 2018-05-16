@@ -7,9 +7,9 @@ namespace DataAccessLayer.Entities
     public class Donation
     {
         public int Id { get; set; }
-        public int DonorId { get; set; }
+        public int DonationRequestId { get; set; }
         public DateTime Date { get; set; }
 
-        public Donor Donor { get; set; }
+        public DonationRequest DonationRequest { get; set; }
     }
 }

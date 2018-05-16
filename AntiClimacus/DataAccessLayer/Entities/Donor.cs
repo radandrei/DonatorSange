@@ -17,5 +17,6 @@ namespace DataAccessLayer.Entities
 
         public DonorData DonorData { get; set; }
         public Address Address { get; set; }
+        public ICollection<DonationRequest> DonationRequests { get; set; }
     }
 }
