@@ -8,5 +8,7 @@ export class User{
     role:Role;
     donor:Donor;
     address:Address;
+    firstName:string;
+    lastName:string;
     constructor(id:number,username:string,role:Role,donor:Donor,address:Address){}
 }

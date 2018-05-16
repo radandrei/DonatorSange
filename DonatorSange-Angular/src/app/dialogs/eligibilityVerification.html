@@ -1,0 +1,57 @@
+<!-- birthdate;
+weight;
+heartBeat;
+bloodPressure;
+interventions;
+feminineProblems;
+junkFood;
+onDrugs;
+diseases;
+donorId; -->
+
+<mat-dialog-content>
+    <h1>Verify the eligibility</h1>
+    <fieldset>
+        Birth Date:
+        <input #birthDate type="number" style="margin-left:3px;border-top:0px;border-left:0px;border-right:0px;" />
+        <br>
+        Weight:
+        <input #weight type="number" style="margin-left:3px;border-top:0px;border-left:0px;border-right:0px;" />
+        <br>
+        <br> Hearth Beat:
+        <input #heartBeat type="number" style="margin-left:3px;border-top:0px;border-left:0px;border-right:0px;" />
+        <br>
+        <br>Blood Pressure:
+        <input #bloodPressure type="number" style="margin-left:3px;border-top:0px;border-left:0px;border-right:0px;" />
+        <br>
+        <br>
+        Interventions:
+        <input #interventions type="checkbox" style="margin-left:3px;border-top:0px;border-left:0px;border-right:0px;" />
+        <br>
+        Birth and Menstruations:
+        <input #feminineProblems type="checkbox" style="margin-left:3px;border-top:0px;border-left:0px;border-right:0px;" />
+        <br>
+        Junk food:
+        <input #junkFood type="checkbox" style="margin-left:3px;border-top:0px;border-left:0px;border-right:0px;" />
+        <br>
+        On Drugs:
+        <input #onDrugs type="checkbox" style="margin-left:3px;border-top:0px;border-left:0px;border-right:0px;" />
+        <br>
+        Diseases:
+        <input #diseases type="checkbox" style="margin-left:3px;border-top:0px;border-left:0px;border-right:0px;" />
+        <br>
+    </fieldset>
+    <br>
+    <br>
+    <div class="eligibility" *ngIf="resolveEligibility(birthDate.value,weight.value,heartBeat.value,bloodPreassure.value,interventions.value,feminineProblems.value,junkFood.value,onDrugs.value,diseases.value)">
+        The donor is eligible for the donation. You can save the data and prepare for donation.
+        <button type='submit' mat-dialog-close="Submit" (click)='add(birthDate.value,weight.value,heartBeat.value,bloodPreassure.value,interventions.value,feminineProblems.value,junkFood.value,onDrugs.value,diseases.value)'></button>
+    </div>
+    <div class="eligibility" *ngIf="!resolveEligibility(birthDate.value,weight.value,heartBeat.value,bloodPreassure.value,interventions.value,feminineProblems.value,junkFood.value,onDrugs.value,diseases.value)">
+            The donor is not eligible for the donation. You can save the data by clicking submit.
+            <button type='submit' mat-dialog-close="Submit" (click)='add(birthDate.value,weight.value,heartBeat.value,bloodPreassure.value,interventions.value,feminineProblems.value,junkFood.value,onDrugs.value,diseases.value)'></button>
+        </div>
+    <button type='submit' mat-dialog-close="Cancel" (click)='cancel()'>Cancel</button>
+    <br>
+    <br>
+</mat-dialog-content>
