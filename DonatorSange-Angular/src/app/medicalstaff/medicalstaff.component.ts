@@ -36,32 +36,21 @@ export class MedicalstaffComponent implements OnInit {
   eligibilityDialog(id:number) {
         let dialogRef;
         dialogRef = this.dialog.open(DialogVerifyEligibility, { width: '50%',height:'80%',data:{donorId:id} });
-
-        dialogRef.afterClosed().subscribe(result=>{
-          console.log(result);
-          if(result=='Submit')
-            this.eligibilityVerification=true;
-          // window.location.reload();
-        });
-
       }
 
   isEligible(donorId){
     let donor = this.database.getDonor(donorId);
     let year=1000*60*60*24*365;
-    let donorTime=new Date(donor.birthdate).getTime();
+    let donorTime=new Date(donor.donorData.birthdate).getTime();
     let actualTime=new Date().getTime();
     let birthDateValidation = (donorTime+18*year<actualTime&&donorTime+60*year>actualTime)
     let weightValidation=(donor.donorData.weight>50);
     let bloodPreassureValidation=(donor.donorData.bloodPressure>100&&donor.donorData.bloodPressure<180);
     let heartBeatValidation=(donor.donorData.heartbeat>60&&donor.donorData.heartbeat<100);
     let finalResult=(birthDateValidation&&weightValidation&&heartBeatValidation&&bloodPreassureValidation&&!donor.donorData.interventions&&!donor.donorData.feminineProblems&&!donor.donorData.junkFood&&!donor.donorData.onDrugs&&!donor.donorData.diseases);
-    return finalResult&&this.eligibilityVerification;
+    return finalResult;
   }
 
-  isVerified(){
-    return this.eligibilityVerification;
-  }
 
   hasRequest(request){
     return (request  != null );

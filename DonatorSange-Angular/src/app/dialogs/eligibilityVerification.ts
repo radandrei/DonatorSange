@@ -61,7 +61,8 @@ export class DialogVerifyEligibility {
     this.donorData.onDrugs=!onDrugs;
     this.donorData.diseases=!diseases;
     
-    this.donorService.updateDonorData(this.donorData).subscribe(
+    this.donor.donorData=this.donorData;
+    this.donorService.updateDonor(this.donorData).subscribe(
       response => {
         window.location.reload();
         alert("Data updated!");
