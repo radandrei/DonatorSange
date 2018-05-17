@@ -7,6 +7,11 @@ namespace BusinessLayer.Models
         public int Id { get; set; }
         public string Name { get; set; }
 
+        public GenderModel()
+        {
+
+        }
+
         public GenderModel(Gender gender)
         {
             Id = gender.Id;

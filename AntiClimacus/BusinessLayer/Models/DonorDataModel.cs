@@ -19,6 +19,12 @@ namespace BusinessLayer.Models
         public bool OnDrugs { get; set; }
         public bool Diseases { get; set; }
 
+        public DonorDataModel()
+        {
+                
+        }
+
+
         public DonorDataModel(DonorData donor)
         {
             Id = donor.Id;

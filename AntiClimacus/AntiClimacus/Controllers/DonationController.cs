@@ -97,12 +97,12 @@ namespace AntiClimacus.Controllers
 
         // POST: api/Donation
         [HttpPost("[action]")]
-        public IActionResult SubmitDonorData([FromBody]DonorModel model)
+        public IActionResult SubmitDonorData([FromBody]DonorModel donor)
         {
             try
-            {
-                donationService.SubmitDonorData(model.DonorData,model.Id);
-                donationRequestService.UpdateStatusOfDonorRequest(model.Id, 2);
+             {
+                donationService.SubmitDonorData(donor.DonorData,donor.Id);
+                donationRequestService.UpdateStatusOfDonorRequest(donor.Id, 2);
 
                 return new OkObjectResult("donor data updated");
             }

@@ -18,6 +18,11 @@ namespace BusinessLayer.Models
         public DonationRequestModel DonationRequest { get; set; }
         public UserModel User { get; set; }
 
+        public DonorModel()
+        {
+
+        }
+
         public DonorModel(Donor donor)
         {
             Id = donor.Id;
