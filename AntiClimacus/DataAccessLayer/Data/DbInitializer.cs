@@ -116,15 +116,29 @@ namespace DataAccessLayer.Data
                 Name = "Male"
             });
 
+            _context.Genders.Add(new Gender()
+            {
+                Name = "Female"
+            });
+
             _context.SaveChanges();
+
+            //_context.Donors.Add(new Donor()
+            //{
+            //    AddressId = 1,
+            //    Email = "chip@chip.com",
+            //    Phone = "0744005002",
+            //    GenderId = 1,
+            //    UserId = 1
+            //});
 
             _context.Donors.Add(new Donor()
             {
                 AddressId = 1,
-                Email = "chip@chip.com",
+                Email = "roxi@pam.com",
                 Phone = "0744005002",
-                GenderId = 1,
-                UserId = 1
+                GenderId = 2,
+                UserId = 2
             });
 
             _context.SaveChanges();
@@ -161,6 +175,7 @@ namespace DataAccessLayer.Data
                 Weight = 60,
                 BloodTypeId = 1,
                 BloodPressure = 150,
+                Birthdate=new DateTime(1997,1,14),
                 Diseases = false,
                 FeminineProblems = false,
                 Heartbeat = 90,

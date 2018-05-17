@@ -44,7 +44,7 @@ namespace BusinessLayer.Services
         public List<DonorModel> GetDonors(int medicalUnitId)
         {
             List<StatusModel> statusList = statusService.GetAllStatuses();
-            var list = donorRepository.GetAll(medicalUnitId);
+            var list = donorRepository.GetAll(medicalUnitId).ToList();
 
             if (list.Count > 0)
             {
