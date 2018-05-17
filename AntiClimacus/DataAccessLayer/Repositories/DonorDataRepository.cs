@@ -53,6 +53,8 @@ namespace DataAccessLayer.Repositories
             }
 
             context.SaveChanges();
+
+            return oldData;
         }
 
         public void Delete(int Id)

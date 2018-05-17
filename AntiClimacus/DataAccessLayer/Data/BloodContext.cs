@@ -31,7 +31,7 @@ namespace DataAccessLayer.Data
         public DbSet<MedicalUnit> MedicalUnits { get; set; }
         public DbSet<MedicalUnitType> MedicalUnitTypes { get; set; }
         public DbSet<Gender> Genders { get; set; }
-
+        public DbSet<BloodBank> BloodBanks { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -52,9 +52,16 @@ namespace DataAccessLayer.Data
             modelBuilder.Entity<MedicalUnit>().ToTable("MedicalUnit");
             modelBuilder.Entity<MedicalUnitType>().ToTable("MedicalUnitType");
             modelBuilder.Entity<Gender>().ToTable("Gender");
+            modelBuilder.Entity<BloodBank>().ToTable("BloodBank");
 
             modelBuilder.Entity<Donor>()
                 .HasOne(d => d.User).WithOne(x => x.Donor).IsRequired().OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Request>()
+                .HasOne(d => d.User).WithMany(x => x.Requests).IsRequired().OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<MedicalUnit>().
+                HasOne(x => x.BloodBank).WithOne(b => b.MedicalUnit).IsRequired().OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

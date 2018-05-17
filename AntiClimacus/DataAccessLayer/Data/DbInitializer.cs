@@ -63,17 +63,24 @@ namespace DataAccessLayer.Data
                 new Status()
                 {
                     Name="Distributing blood"
+                },
+                new Status()
+                {
+                    Name="Rejected"
                 }
             };
 
             _context.Statuses.AddRange(statuses);
+
+            _context.BloodBanks.Add(new BloodBank());
 
             _context.SaveChanges();
 
             _context.MedicalUnits.Add(new MedicalUnit()
             {
                 MedicalUnitTypeId = 1,
-                AddressId = 1
+                AddressId = 1,
+                BloodBankId = 1
             });
 
             _context.SaveChanges();
@@ -108,33 +115,12 @@ namespace DataAccessLayer.Data
 
             _context.SaveChanges();
 
-            _context.Statuses.AddRange(new List<Status>()
-            {
-               new Status() {
-                    Name = "Request registered"
-               },
-               new Status()
-               {
-                   Name="Blood taken"
-               },
-               new Status()
-               {
-                   Name="Blood tested"
-               },
-               new Status()
-               {
-                   Name="Blood Distributed"
-               }
-            });
-
-            _context.SaveChanges();
-
             _context.DonationRequests.Add(new DonationRequest()
             {
                 Active = true,
                 Date = new DateTime(2018, 05, 16),
                 DonorId = 1,
-                StatusId=1
+                StatusId = 1
             });
 
             _context.DonationRequests.Add(new DonationRequest()
@@ -160,13 +146,13 @@ namespace DataAccessLayer.Data
                 DonorId = 1,
                 Weight = 60,
                 BloodTypeId = 1,
-                BloodPressure=150,
-                Diseases=false,
-                FeminineProblems=false,
-                Heartbeat=90,
-                Interventions=false,
-                JunkFood=false,
-                OnDrugs=false
+                BloodPressure = 150,
+                Diseases = false,
+                FeminineProblems = false,
+                Heartbeat = 90,
+                Interventions = false,
+                JunkFood = false,
+                OnDrugs = false
             });
 
             var bloodComponents = new List<BloodComponent>() {
@@ -211,9 +197,9 @@ namespace DataAccessLayer.Data
 
             var bloodComponentTypes = new List<BloodComponentType>();
 
-            for(int i=1; i<=3; i++)
+            for (int i = 1; i <= 3; i++)
             {
-                for(int j=i; j<=4; j++)
+                for (int j = i; j <= 4; j++)
                 {
                     bloodComponentTypes.Add(new BloodComponentType()
                     {
