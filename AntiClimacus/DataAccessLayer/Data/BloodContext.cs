@@ -23,9 +23,15 @@ namespace DataAccessLayer.Data
         public DbSet<BloodComponentType> BloodComponentTypes { get; set; }
         public DbSet<Request> Requests{ get; set; }
         public DbSet<RequestStatus> RequestStatuses { get; set; }
-        public DbSet<UnitStatus> UnitStatuses { get; set; }
-        public DbSet<BloodUnit> BloodUnits { get; set; }
-
+        public DbSet<Status> Statuses { get; set; }
+        public DbSet<DonationRequest> DonationRequests { get; set; }
+        public DbSet<Donation> Donations { get; set; }
+        public DbSet<BloodTest> BloodTests { get; set; }
+        public DbSet<Condition> Conditions { get; set; }
+        public DbSet<MedicalUnit> MedicalUnits { get; set; }
+        public DbSet<MedicalUnitType> MedicalUnitTypes { get; set; }
+        public DbSet<Gender> Genders { get; set; }
+        public DbSet<BloodBank> BloodBanks { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -38,8 +44,24 @@ namespace DataAccessLayer.Data
             modelBuilder.Entity<BloodComponentType>().ToTable("BloodComponentType");
             modelBuilder.Entity<Request>().ToTable("Request");
             modelBuilder.Entity<RequestStatus>().ToTable("RequestStatus");
-            modelBuilder.Entity<UnitStatus>().ToTable("UnitStatus");
-            modelBuilder.Entity<BloodUnit>().ToTable("BloodUnit");
+            modelBuilder.Entity<Status>().ToTable("Status");
+            modelBuilder.Entity<DonationRequest>().ToTable("DonationRequest");
+            modelBuilder.Entity<Donation>().ToTable("Donation");
+            modelBuilder.Entity<BloodTest>().ToTable("BloodTest");
+            modelBuilder.Entity<Condition>().ToTable("Condition");
+            modelBuilder.Entity<MedicalUnit>().ToTable("MedicalUnit");
+            modelBuilder.Entity<MedicalUnitType>().ToTable("MedicalUnitType");
+            modelBuilder.Entity<Gender>().ToTable("Gender");
+            modelBuilder.Entity<BloodBank>().ToTable("BloodBank");
+
+            modelBuilder.Entity<Donor>()
+                .HasOne(d => d.User).WithOne(x => x.Donor).IsRequired().OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Request>()
+                .HasOne(d => d.User).WithMany(x => x.Requests).IsRequired().OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<MedicalUnit>().
+                HasOne(x => x.BloodBank).WithOne(b => b.MedicalUnit).IsRequired().OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

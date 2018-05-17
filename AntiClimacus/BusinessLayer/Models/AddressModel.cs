@@ -16,12 +16,14 @@ namespace BusinessLayer.Models
 
         public AddressModel(Address address)
         {
+            if (address != null) { 
             Id = address.Id;
             City = address.City;
             Country = address.Country;
             County = address.County;
             Number = address.Number;
             Street = address.Street;
+        }
 
         }
     }

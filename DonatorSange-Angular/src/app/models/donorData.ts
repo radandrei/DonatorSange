@@ -5,9 +5,12 @@ export class DonorData{
     id:number;
     birthdate:Date;
     bloodType:BloodType;
-    donor:Donor;
-    email:string;
-    gender:string;
-    phone:string;
     weight:number;
+    heartbeat:number;
+    bloodPressure:number;
+    interventions:boolean;
+    feminineProblems:boolean;
+    junkFood:boolean;
+    onDrugs:boolean;
+    diseases:boolean;
 }

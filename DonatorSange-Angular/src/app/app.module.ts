@@ -6,7 +6,6 @@ import { HttpModule, XHRBackend } from '@angular/http';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { DonorComponent } from './donor/donor.component';
 
 import { routing } from './app.routes';
 // import {PacientPrescriptionsPage}
@@ -58,6 +57,8 @@ import { RegistrationFormComponent } from './registration-form/registration-form
 import { LoginFormComponent } from './login-form/login-form.component';
 import { DoctorComponent } from './doctor/doctor.component';
 import { MedicalstaffComponent } from './medicalstaff/medicalstaff.component';
+import { MedicalstaffRequestsComponent } from './medicalstaff-requests/medicalstaff-requests.component';
+import { DialogVerifyEligibility } from './dialogs/eligibilityVerification';
 
 @NgModule({
   exports: [
@@ -94,19 +95,19 @@ import { MedicalstaffComponent } from './medicalstaff/medicalstaff.component';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-  ],
-  declarations: [],
+  ]
 })
 export class DemoMaterialModule {}
 
 @NgModule({
   declarations: [
     AppComponent,
-    DonorComponent,
     RegistrationFormComponent,
     LoginFormComponent,
-    DoctorComponent,
-    MedicalstaffComponent
+    DoctorComponent, 
+    MedicalstaffComponent,
+    MedicalstaffRequestsComponent,
+    DialogVerifyEligibility 
   ],
   imports: [
     BrowserModule,
@@ -129,6 +130,6 @@ export class DemoMaterialModule {}
     },
     UserService,ConfigService],
   bootstrap: [AppComponent],
-  entryComponents: []
+  entryComponents: [DialogVerifyEligibility]
 })
 export class AppModule { }

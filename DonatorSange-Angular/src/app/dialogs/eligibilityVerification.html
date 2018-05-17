@@ -1,0 +1,81 @@
+<!-- birthdate;
+weight;
+heartBeat;
+bloodPressure;
+interventions;
+feminineProblems;
+junkFood;
+onDrugs;
+diseases;
+donorId; -->
+
+<mat-dialog-content>
+    <h1>Verify the eligibility</h1>
+    <fieldset>
+        Birth Date:
+        <input #birthdate type="date" [value]="donorData?.birthdate | date:'yyyy-MM-dd'"  style="margin-left:3px;border-top:0px;border-left:0px;border-right:0px;" />
+        <br>
+        Weight:
+        <input #weight type="number" [value]="donorData?.weight" style="margin-left:3px;border-top:0px;border-left:0px;border-right:0px;" />
+        <br>
+        <br> Hearth Beat:
+        <input #heartbeat type="number" [value]="donorData?.heartbeat" style="margin-left:3px;border-top:0px;border-left:0px;border-right:0px;" />
+        <br>
+        <br>Blood Pressure:
+        <input #bloodPressure type="number" [value]="donorData?.bloodPressure" style="margin-left:3px;border-top:0px;border-left:0px;border-right:0px;" />
+        <br>
+        <br>
+        No surgeries in the last 6 months:
+        <input #interventions type="checkbox" [checked]="!donorData?.interventions" style="margin-left:3px;border-top:0px;border-left:0px;border-right:0px;" />
+        <br>
+        The donor is not pregnant, post birth, or menstruating.
+        <input #feminineProblems type="checkbox" [checked]="!donorData?.feminineProblems" style="margin-left:3px;border-top:0px;border-left:0px;border-right:0px;" />
+        <br>
+        No alcohol or fat consumption in the last 48 hours.
+        <input #junkFood type="checkbox" [checked]="!donorData?.junkFood" style="margin-left:3px;border-top:0px;border-left:0px;border-right:0px;" />
+        <br>
+        Not in treatment for: hypertension, heart disease, kidney disease, mental illness, blood disease, or endocrine affections:
+        <input #onDrugs type="checkbox" [checked]="!donorData?.onDrugs" style="margin-left:3px;border-top:0px;border-left:0px;border-right:0px;" />
+        <br>
+        Not have or have had the following diseases:
+        <input #diseases type="checkbox" [checked]="!donorData?.diseases" style="margin-left:3px;border-top:0px;border-left:0px;border-right:0px;" />
+        <ul>
+        <li>Hepatitis</li>
+        <li>Hepatitis (of any type)</li>
+        <li>TB</li>
+        <li>Pox</li>
+        <li>Malaria</li>
+        <li>Epilepsy and other neurological diseases</li>
+        <li>Mental illness</li>
+        <li>Brucellosis</li>
+        <li>Ulcer</li>
+        <li>Diabetes</li>
+        <li>Heart diseases</li>
+        <li>Skin diseases: psoriasis, vitiligo</li>
+        <li>Myopia over (-) 6 diopters</li>
+        <li>Cancer</li>
+    </ul>
+        
+        <br>
+        Confirm:
+        <input #confirm type="checkbox" [checked]="confirmation" (change)="confirmation = !confirmation" style="margin-left:3px;border-top:0px;border-left:0px;border-right:0px;" />
+        <br>
+    </fieldset>
+    <br>
+    <br>
+    <div class="confirmation" *ngIf="confirm.checked==true " >
+        <div class="eligibility" *ngIf="resolveEligibility(birthdate.value,weight.value,heartbeat.value,bloodPressure.value,interventions.checked,feminineProblems.checked,junkFood.checked,onDrugs.checked,diseases.checked)">
+            The donor is eligible for the donation. You can save the data and prepare for donation.
+            <br>
+            <button type='submit' mat-dialog-close="Submit" (click)='add(birthdate.value,weight.value,heartbeat.value,bloodPressure.value,interventions.checked,feminineProblems.checked,junkFood.checked,onDrugs.checked,diseases.checked)'>Save</button>
+        </div>
+        <div class="eligibility" *ngIf="!resolveEligibility(birthdate.value,weight.value,heartbeat.value,bloodPressure.value,interventions.checked,feminineProblems.checked,junkFood.checked,onDrugs.checked,diseases.checked)">
+                The donor is not eligible for the donation. You can save the data by clicking submit.
+                <br>
+                <button type='submit' mat-dialog-close="Submit" (click)='add(birthdate.value,weight.value,heartbeat.value,bloodPressure.value,interventions.checked,feminineProblems.checked,junkFood.checked,onDrugs.checked,diseases.checked)'>Save</button>
+        </div>
+    </div>
+    <button type='submit' mat-dialog-close="Cancel" (click)='cancel()'>Cancel</button>
+    <br>
+    <br>
+</mat-dialog-content>

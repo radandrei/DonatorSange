@@ -1,20 +1,13 @@
 ﻿
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using DataAccessLayer;
-using Kosmos.Extensions;
 using Kosmos.Helpers;
 using Kosmos.Models;
-using login_model.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,6 +15,11 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.IdentityModel.Tokens;
 using DataAccessLayer.Data;
 using AntiClimacus.Models;
+using DataAccessLayer.RepositoryInterfaces;
+using DataAccessLayer.Repositories;
+using BusinessLayer.ServiceInterfaces;
+using BusinessLayer.Services;
+using BusinessLayer.Service;
 
 namespace AntiClimacus
 {
@@ -114,6 +112,18 @@ namespace AntiClimacus
             });
             builder = new IdentityBuilder(builder.UserType, typeof(IdentityRole), builder.Services);
             builder.AddEntityFrameworkStores<BloodContext>().AddDefaultTokenProviders();
+
+            services.AddScoped<IDonationRequestRepository, DonationRequestRepository>();
+            services.AddScoped<IDonorRepository, DonorRepository>();
+            services.AddScoped<IStatusRepository, StatusRepository>();
+            services.AddScoped<IBloodTypeRepository, BloodTypeRepository>();
+            services.AddScoped<IBloodComponentRepository, BloodComponentRepository>();
+            services.AddScoped<IDonorDataRepository, DonorDataRepository>();
+
+            services.AddTransient<IDonationService, DonationService>();
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IStatusService, StatusService>();
+            services.AddTransient<IDonationRequestService, DonationRequestService>();
 
             services.AddMvc();
 

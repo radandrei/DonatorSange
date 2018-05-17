@@ -1,0 +1,79 @@
+<div class="header-part">
+  <div class="logout-button">
+    <button type=submit mat-button (click)='logout()'> Logout ({{user.username}}) </button>
+  </div>
+
+ 
+
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <div class="container mat-elevation-z8">
+    <div class="header">
+      <mat-input-container floatPlaceholder="never">
+        <input matInput #filter placeholder="Filter requests">
+      </mat-input-container>
+    </div>
+    <mat-table #table [dataSource]="dataSource" matSort>
+
+      <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+
+      <ng-container cdkColumnDef="firstName">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header> First Name </mat-header-cell>
+        <mat-cell *cdkCellDef="let row"> {{row.user.firstName}} </mat-cell>
+      </ng-container>
+
+      <ng-container cdkColumnDef="lastName">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header> Last Name </mat-header-cell>
+        <mat-cell *cdkCellDef="let row"> {{row.user.lastName}} </mat-cell>
+      </ng-container>
+
+      <ng-container cdkColumnDef="county">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header> County </mat-header-cell>
+        <mat-cell *cdkCellDef="let row"> {{row.address.county}} </mat-cell>
+      </ng-container>
+
+      <ng-container cdkColumnDef="city">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header> City </mat-header-cell>
+        <mat-cell *cdkCellDef="let row"> {{row.address.city}} </mat-cell>
+      </ng-container>
+
+      <ng-container cdkColumnDef="bloodComponentType">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header> Blood Component Type </mat-header-cell>
+        <mat-cell *cdkCellDef="let row"> {{row.bloodComponentType.name}} </mat-cell>
+      </ng-container>
+
+      <ng-container cdkColumnDef="status">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header> Status </mat-header-cell>
+        <mat-cell *cdkCellDef="let row"> {{row.requestStatus.name}} </mat-cell>
+      </ng-container>
+
+      <ng-container cdkColumnDef="priority">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header> Priority </mat-header-cell>
+        <mat-cell *cdkCellDef="let row"> {{row.priority}} </mat-cell>
+      </ng-container>
+
+      <ng-container cdkColumnDef="quantity">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header> Quantity </mat-header-cell>
+        <mat-cell *cdkCellDef="let row"> {{row.quantity}} </mat-cell>
+      </ng-container>
+
+
+      <ng-container cdkColumnDef="actions">
+        <mat-header-cell *cdkHeaderCellDef>Actions</mat-header-cell>
+        <mat-cell *cdkCellDef="let row">
+          
+        </mat-cell>
+      </ng-container>
+
+
+      <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *cdkRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator #paginator [length]="dataSource.filterLength" [pageIndex]="0" [pageSize]="25" [pageSizeOptions]="[5, 10, 25, 100]">
+    </mat-paginator>
+  </div>
