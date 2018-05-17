@@ -56,13 +56,13 @@ export class DonorService {
   }
 
 
-  updateDonorData(donorData:DonorData){
+  updateDonor(donor:Donor){
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
     
-    const body=JSON.stringify(donorData);
-    return this.http.post(this.DonorUrl+"/updateDonorData",body,httpOptions);
+    const body=JSON.stringify(donor);
+    return this.http.post(this.DonorUrl+"/updateDonor",body,httpOptions);
 
   }
 }
