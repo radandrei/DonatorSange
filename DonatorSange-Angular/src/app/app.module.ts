@@ -6,7 +6,7 @@ import { HttpModule, XHRBackend } from '@angular/http';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { DonorPageComponent } from './donor-page/donor-page.component';
+import { DonorComponent } from './donor/donor.component';
 
 import { routing } from './app.routes';
 // import {PacientPrescriptionsPage}
@@ -95,16 +95,18 @@ import { MedicalstaffComponent } from './medicalstaff/medicalstaff.component';
     MatToolbarModule,
     MatTooltipModule,
   ],
-  declarations: [DoctorComponent, MedicalstaffComponent],
+  declarations: [],
 })
 export class DemoMaterialModule {}
 
 @NgModule({
   declarations: [
     AppComponent,
-    DonorPageComponent
+    DonorComponent,
     RegistrationFormComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    DoctorComponent,
+    MedicalstaffComponent
   ],
   imports: [
     BrowserModule,
