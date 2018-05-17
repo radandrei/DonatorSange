@@ -13163,29 +13163,30 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
       "BusinessLayer >= 1.0.0",
+      "DataAccessLayer >= 1.0.0",
       "Microsoft.AspNetCore.All >= 2.0.3",
       "Microsoft.NETCore.App >= 2.0.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 2.0.3"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Andrei\\.nuget\\packages\\": {},
+    "C:\\Users\\Roxana\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Andrei\\Documents\\IMMYOWNBOSS\\AntiClimacus\\AntiClimacus\\AntiClimacus.csproj",
+      "projectUniqueName": "C:\\Users\\Roxana\\Documents\\DonatorSange\\AntiClimacus\\AntiClimacus\\AntiClimacus.csproj",
       "projectName": "AntiClimacus",
-      "projectPath": "C:\\Users\\Andrei\\Documents\\IMMYOWNBOSS\\AntiClimacus\\AntiClimacus\\AntiClimacus.csproj",
-      "packagesPath": "C:\\Users\\Andrei\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Andrei\\Documents\\IMMYOWNBOSS\\AntiClimacus\\AntiClimacus\\obj\\",
+      "projectPath": "C:\\Users\\Roxana\\Documents\\DonatorSange\\AntiClimacus\\AntiClimacus\\AntiClimacus.csproj",
+      "packagesPath": "C:\\Users\\Roxana\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Roxana\\Documents\\DonatorSange\\AntiClimacus\\AntiClimacus\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Andrei\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Roxana\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -13198,8 +13199,11 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "C:\\Users\\Andrei\\Documents\\IMMYOWNBOSS\\AntiClimacus\\BusinessLayer\\BusinessLayer.csproj": {
-              "projectPath": "C:\\Users\\Andrei\\Documents\\IMMYOWNBOSS\\AntiClimacus\\BusinessLayer\\BusinessLayer.csproj"
+            "C:\\Users\\Roxana\\Documents\\DonatorSange\\AntiClimacus\\BusinessLayer\\BusinessLayer.csproj": {
+              "projectPath": "C:\\Users\\Roxana\\Documents\\DonatorSange\\AntiClimacus\\BusinessLayer\\BusinessLayer.csproj"
+            },
+            "C:\\Users\\Roxana\\Documents\\DonatorSange\\AntiClimacus\\DataAccessLayer\\DataAccessLayer.csproj": {
+              "projectPath": "C:\\Users\\Roxana\\Documents\\DonatorSange\\AntiClimacus\\DataAccessLayer\\DataAccessLayer.csproj"
             }
           }
         }
