@@ -71,8 +71,6 @@ namespace AntiClimacus.Controllers
 
         }
 
-        }
-
         // GET: api/Donation/getDonor/5
         [HttpGet("[action]/{id}")]
         public IActionResult GetDonor(int id)
