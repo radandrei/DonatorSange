@@ -17,7 +17,6 @@ namespace BusinessLayer.Models
         public RequestModel(Request req)
         {
             Id = req.Id;
-            Address = new AddressModel(req.Address);
             BloodComponentType = new BloodComponentTypeModel(req.BloodComponentType);
 
             Priority = req.Priority;

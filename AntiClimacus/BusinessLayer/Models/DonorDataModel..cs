@@ -5,30 +5,31 @@ using System.Text;
 
 namespace BusinessLayer.Models
 {
-    class DonorDataModel
+    public class DonorDataModel
     {
         public int Id { get; set; }
-        public BloodTypeModel BloodTypeId { get; set; }
-        public DateTime Birthdate { get; set; }
-        public DonorModel Donor { get; set; }
-        public string Email { get; set; }
-        public string Gender { get; set; }
-        public string Phone { get; set; }
+        public BloodTypeModel BloodType { get; set; }
         public int Weight { get; set; }
+        public int Heartbeat { get; set; }
+        public int BloodPressure { get; set; }
+        public bool Interventions { get; set; }
+        public bool FeminineProblems { get; set; }
+        public bool JunkFood { get; set; }
+        public bool OnDrugs { get; set; }
+        public bool Diseases { get; set; }
 
         public DonorDataModel(DonorData donor)
         {
             Id = donor.Id;
-            BloodTypeId = new BloodTypeModel(donor.BloodType);
-            Birthdate = donor.Birthdate;
-            Donor = new DonorModel(donor.Donor);
-            Email = donor.Email;
-            Gender = donor.Gender;
-            Phone = donor.Phone;
+            BloodType = new BloodTypeModel(donor.BloodType);
             Weight = donor.Weight;
-
-            
-
+            Heartbeat = donor.Heartbeat;
+            BloodPressure = donor.BloodPressure;
+            Interventions = donor.Interventions;
+            FeminineProblems = donor.FeminineProblems;
+            JunkFood = donor.JunkFood;
+            OnDrugs = donor.OnDrugs;
+            Diseases = donor.Diseases;
         }
     }
 }

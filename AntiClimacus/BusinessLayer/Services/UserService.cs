@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Interfaces;
 using BusinessLayer.Models;
+using BusinessLayer.ServiceInterfaces;
 using DataAccessLayer;
 using DataAccessLayer.Data;
 using DataAccessLayer.Entities;
@@ -10,7 +11,7 @@ using System.Text;
 
 namespace BusinessLayer.Service
 {
-    public class UserService
+    public class UserService : IUserService
     {
         private IUserRepository userRepository;
 
@@ -45,12 +46,12 @@ namespace BusinessLayer.Service
             return new UserModel(saved);
         }
 
-        public UserModel getUserById(int id)
+        public UserModel GetUserById(int id)
         {
             var user = userRepository.GetById(id);
 
             if (user != null)
-                return new UserModel(user);
+                return new UserModel(user,true);
             return null;
         }
     }

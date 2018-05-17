@@ -9,3 +9,4 @@ AntiClimacus/.vs/AntiClimacus/DesignTimeBuild/.dtbcache
 AntiClimacus/BusinessLayer/bin/Debug/netcoreapp2.0/BusinessLayer.deps.json
 *.CopyComplete
 AntiClimacus/BusinessLayer/obj/Debug/netcoreapp2.0/BusinessLayer.csproj.FileListAbsolute.txt
+*.cache

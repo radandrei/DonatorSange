@@ -6,25 +6,32 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace BusinessLayer.Models
+{
+    public class UserModel
     {
-        public class UserModel
+        public int Id { get; set; }
+        public string Username { get; set; }
+        public RoleModel Role { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public MedicalUnitModel MedicalUnit { get; set; }
+
+        public UserModel()
         {
-            public int Id { get; set; }
-            public string Username { get; set; }
-            public RoleModel Role { get; set; }
-            public AddressModel AdressId { get; set; }
-            public string Password { get; set; }
-            public UserModel()
-            {
 
-            }
+        }
 
-            public UserModel(User user)
+        public UserModel(User user, bool withUnit = false)
+        {
+            Id = user.Id;
+            Username = user.Username;
+            FirstName = user.FirstName;
+            LastName = user.LastName;
+            Role = new RoleModel(user.Role);
+            if (withUnit)
             {
-                Id = user.Id;
-                Username = user.Username;
-                Password = user.Password;
-                Role = new RoleModel(user.Role);   
+                MedicalUnit = new MedicalUnitModel(user.MedicalUnit);
             }
         }
     }
+}
