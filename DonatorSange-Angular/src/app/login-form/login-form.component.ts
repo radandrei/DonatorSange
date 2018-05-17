@@ -44,12 +44,12 @@ export class LoginFormComponent {
       let id = localStorage.getItem("auth_id");
       this.userService.getUser(id).then(user => {
         if (user.role.name == "Donor") {
-          this.router.navigateByUrl("medicalstaff");
+          this.router.navigateByUrl("donor");
         }
         if (user.role.name == "Doctor") {
           this.router.navigateByUrl("doctor");
         }
-        if (user.role.name == "MedicalStaff") {
+        if (user.role.name == "Staff") {
           this.router.navigateByUrl("medicalstaff");
         }
         localStorage.setItem('myUser', JSON.stringify(user));

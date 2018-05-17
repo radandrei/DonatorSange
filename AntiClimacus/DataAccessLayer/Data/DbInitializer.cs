@@ -50,6 +50,10 @@ namespace DataAccessLayer.Data
             {
                 new Status()
                 {
+                    Name="Registered"
+                },
+                new Status()
+                {
                     Name="Taking blood"
                 },
                 new Status()
@@ -91,6 +95,16 @@ namespace DataAccessLayer.Data
                 Password = "$KCOA$V1$10000$bRyC0Ll5o+5iHbKMDkgR1Dfqj73bu6RTRUz3viH234lBxGn5",
                 FirstName = "Ciprian",
                 LastName = "Pintilei",
+                MedicalUnitId = 1,
+                RoleId = 3
+            });
+
+            _context.Users.Add(new User()
+            {
+                Username = "roxana",
+                Password = "$KCOA$V1$10000$bRyC0Ll5o+5iHbKMDkgR1Dfqj73bu6RTRUz3viH234lBxGn5",
+                FirstName = "Rocsana",
+                LastName = "Pam Pam",
                 MedicalUnitId = 1,
                 RoleId = 1
             });

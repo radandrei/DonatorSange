@@ -10,6 +10,6 @@ namespace BusinessLayer.ServiceInterfaces
         List<DonorModel> GetDonors(int medicalUnitId);
         List<BloodComponentModel> GetBloodComponents();
         List<BloodTypeModel> GetBloodTypes();
-        void SubmitDonorData(DonorDataModel model);
+        void SubmitDonorData(DonorDataModel model,int donorId);
     }
 }
