@@ -17,5 +17,6 @@ namespace DataAccessLayer.Entities
         public Role Role { get; set; }
         public MedicalUnit MedicalUnit { get; set; }
         public Donor Donor { get; set; }
+        public ICollection<Request> Requests { get; set; }
     }
 }

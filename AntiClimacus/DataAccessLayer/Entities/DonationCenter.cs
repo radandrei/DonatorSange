@@ -7,7 +7,9 @@ namespace DataAccessLayer.Entities
         public int Id { get; set; }
         public int AddressId { get; set; }
         public int MedicalUnitTypeId { get; set; }
+        public int BloodBankId { get; set; }
 
+        public BloodBank BloodBank { get; set; }
         public MedicalUnitType MedicalUnitType { get; set; }
         public Address Address { get; set; }
         public ICollection<User> Users { get; set; }
