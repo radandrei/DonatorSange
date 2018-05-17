@@ -116,11 +116,15 @@ namespace AntiClimacus
             services.AddScoped<IDonationRequestRepository, DonationRequestRepository>();
             services.AddScoped<IDonorRepository, DonorRepository>();
             services.AddScoped<IStatusRepository, StatusRepository>();
+            services.AddScoped<IBloodTypeRepository, BloodTypeRepository>();
+            services.AddScoped<IBloodComponentRepository, BloodComponentRepository>();
+            services.AddScoped<IDonorDataRepository, DonorDataRepository>();
 
             services.AddTransient<IDonationService, DonationService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IStatusService, StatusService>();
-            
+            services.AddTransient<IDonationRequestService, DonationRequestService>();
+
             services.AddMvc();
 
         }

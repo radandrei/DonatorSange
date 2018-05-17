@@ -14,10 +14,12 @@ namespace AntiClimacus.Controllers
     public class DonationController : Controller
     {
         private readonly IDonationService donationService;
+        private readonly IDonationRequestService donationRequestService;
 
-        public DonationController(IDonationService donationService)
+        public DonationController(IDonationService donationService, IDonationRequestService donationRequestService)
         {
             this.donationService = donationService;
+            this.donationRequestService = donationRequestService;
         }
 
         // GET: api/Donation/5
@@ -30,19 +32,62 @@ namespace AntiClimacus.Controllers
 
                 return new OkObjectResult(ret);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return new BadRequestObjectResult(ex);
             }
-            
+
         }
-        
-        // POST: api/Donation
-        [HttpPost]
-        public void Post([FromBody]string value)
+
+        [HttpGet("[action]")]
+        public IActionResult GetBloodComponents()
         {
+            try
+            {
+                List<BloodComponentModel> ret = donationService.GetBloodComponents();
+
+                return new OkObjectResult(ret);
+            }
+            catch (Exception ex)
+            {
+                return new BadRequestObjectResult(ex);
+            }
+
         }
-         
+
+        [HttpGet("[action]")]
+        public IActionResult GetBloodTypes()
+        {
+            try
+            {
+                List<BloodTypeModel> ret = donationService.GetBloodTypes();
+
+                return new OkObjectResult(ret);
+            }
+            catch (Exception ex)
+            {
+                return new BadRequestObjectResult(ex);
+            }
+
+        }
+
+        // POST: api/Donation
+        [HttpPost("[action]")]
+        public IActionResult SubmitDonorData([FromBody]DonorDataModel model)
+        {
+            try
+            {
+                donationService.SubmitDonorData(model);
+                donationRequestService.UpdateStatusOfDonorRequest(model.Donor.Id, 2);
+
+                return new OkObjectResult("donor data updated");
+            }
+            catch (Exception ex)
+            {
+                return new BadRequestObjectResult(ex);
+            }
+        }
+
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public void Delete(int id)

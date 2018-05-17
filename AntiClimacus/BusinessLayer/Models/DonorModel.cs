@@ -10,7 +10,6 @@ namespace BusinessLayer.Models
     {
         public int Id { get; set; }
         public AddressModel Adress { get; set; }
-        public DateTime Birthdate { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
         public GenderModel Gender { get; set; }
@@ -23,7 +22,6 @@ namespace BusinessLayer.Models
             Id = donor.Id;
             Adress = new AddressModel(donor.Address);
             Gender = new GenderModel(donor.Gender);
-            Birthdate = donor.Birthdate;
             Phone = donor.Phone;
             Email = donor.Email;
             DonorData = new DonorDataModel(donor.DonorData);

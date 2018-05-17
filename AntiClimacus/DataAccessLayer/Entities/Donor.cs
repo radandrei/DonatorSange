@@ -10,7 +10,6 @@ namespace DataAccessLayer.Entities
         public int AddressId { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
-        public DateTime Birthdate { get; set; }
         public int GenderId { get; set; }
         public int UserId { get; set; }
 

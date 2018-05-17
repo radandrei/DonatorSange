@@ -24,7 +24,6 @@ namespace DataAccessLayer.Data
         public DbSet<Request> Requests{ get; set; }
         public DbSet<RequestStatus> RequestStatuses { get; set; }
         public DbSet<Status> Statuses { get; set; }
-        public DbSet<BloodUnit> BloodUnits { get; set; }
         public DbSet<DonationRequest> DonationRequests { get; set; }
         public DbSet<Donation> Donations { get; set; }
         public DbSet<BloodTest> BloodTests { get; set; }
@@ -46,7 +45,6 @@ namespace DataAccessLayer.Data
             modelBuilder.Entity<Request>().ToTable("Request");
             modelBuilder.Entity<RequestStatus>().ToTable("RequestStatus");
             modelBuilder.Entity<Status>().ToTable("Status");
-            modelBuilder.Entity<BloodUnit>().ToTable("BloodUnit");
             modelBuilder.Entity<DonationRequest>().ToTable("DonationRequest");
             modelBuilder.Entity<Donation>().ToTable("Donation");
             modelBuilder.Entity<BloodTest>().ToTable("BloodTest");

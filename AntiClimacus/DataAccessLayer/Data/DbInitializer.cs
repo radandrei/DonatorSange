@@ -46,6 +46,28 @@ namespace DataAccessLayer.Data
                 Number = 10
             });
 
+            var statuses = new List<Status>()
+            {
+                new Status()
+                {
+                    Name="Taking blood"
+                },
+                new Status()
+                {
+                    Name="Preparing blood"
+                },
+                new Status()
+                {
+                    Name="Testing blood"
+                },
+                new Status()
+                {
+                    Name="Distributing blood"
+                }
+            };
+
+            _context.Statuses.AddRange(statuses);
+
             _context.SaveChanges();
 
             _context.MedicalUnits.Add(new MedicalUnit()
@@ -78,7 +100,6 @@ namespace DataAccessLayer.Data
             _context.Donors.Add(new Donor()
             {
                 AddressId = 1,
-                Birthdate = new DateTime(1990, 1, 1),
                 Email = "chip@chip.com",
                 Phone = "0744005002",
                 GenderId = 1,
@@ -148,7 +169,64 @@ namespace DataAccessLayer.Data
                 OnDrugs=false
             });
 
+            var bloodComponents = new List<BloodComponent>() {
+                new BloodComponent()
+                {
+                    Name="Trombocyte"
+                },
+                new BloodComponent()
+                {
+                    Name="Red blood cell"
+                },
+                new BloodComponent()
+                {
+                    Name="Plasma"
+                }
+            };
+
+            var bloodTypes = new List<BloodType>()
+            {
+                new BloodType()
+                {
+                    Name="A"
+                },
+                new BloodType()
+                {
+                    Name="B"
+                },
+                new BloodType()
+                {
+                    Name="AB"
+                },
+                new BloodType()
+                {
+                    Name="O"
+                }
+            };
+
+            _context.BloodComponents.AddRange(bloodComponents);
+            _context.BloodTypes.AddRange(bloodTypes);
+
             _context.SaveChanges();
+
+            var bloodComponentTypes = new List<BloodComponentType>();
+
+            for(int i=1; i<=3; i++)
+            {
+                for(int j=i; j<=4; j++)
+                {
+                    bloodComponentTypes.Add(new BloodComponentType()
+                    {
+                        BloodComponentId = i,
+                        BloodTypeId = j
+                    });
+                }
+            }
+
+            _context.AddRange(bloodComponentTypes);
+
+            _context.SaveChanges();
+
         }
 
     }

@@ -8,6 +8,7 @@ namespace DataAccessLayer.Entities
     {
         public int Id { get; set; }
         public int DonorId { get; set; }
+        public DateTime Birthdate { get; set; }
         public int Weight { get; set; }
         public int BloodTypeId { get; set; }
         public int Heartbeat { get; set; }

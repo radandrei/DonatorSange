@@ -12,7 +12,9 @@ namespace DataAccessLayer.Entities
         public int Priority { get; set; }
         public int MedicalUnitId { get; set; }
         public int RequestStatusId { get; set; }
+        public int UserId { get; set; }
 
+        public User User { get; set; }
         public BloodComponentType BloodComponentType { get; set; }
         public MedicalUnit MedicalUnit { get; set; }
         public RequestStatus RequestStatus { get; set; }

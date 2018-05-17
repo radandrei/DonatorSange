@@ -8,5 +8,7 @@ namespace DataAccessLayer.RepositoryInterfaces
 {
     public interface IDonationRequestRepository : IBaseRepository<DonationRequest>
     {
+        DonationRequest GetDonationRequestByDonorId(int donorId);
+        void UpdateStatus(DonationRequest donationRequest, int statusId);
     }
 }

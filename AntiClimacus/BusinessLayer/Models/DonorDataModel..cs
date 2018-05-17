@@ -8,6 +8,7 @@ namespace BusinessLayer.Models
     public class DonorDataModel
     {
         public int Id { get; set; }
+        public DateTime Birthdate { get; set; }
         public BloodTypeModel BloodType { get; set; }
         public int Weight { get; set; }
         public int Heartbeat { get; set; }
@@ -17,6 +18,7 @@ namespace BusinessLayer.Models
         public bool JunkFood { get; set; }
         public bool OnDrugs { get; set; }
         public bool Diseases { get; set; }
+        public DonorModel Donor { get; set; }
 
         public DonorDataModel(DonorData donor)
         {
@@ -30,6 +32,8 @@ namespace BusinessLayer.Models
             JunkFood = donor.JunkFood;
             OnDrugs = donor.OnDrugs;
             Diseases = donor.Diseases;
+            Birthdate = donor.Birthdate;
+            Donor = new DonorModel(donor.Donor);
         }
     }
 }
