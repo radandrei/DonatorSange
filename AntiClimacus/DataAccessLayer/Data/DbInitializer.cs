@@ -50,6 +50,10 @@ namespace DataAccessLayer.Data
             {
                 new Status()
                 {
+                    Name="Registered"
+                },
+                new Status()
+                {
                     Name="Taking blood"
                 },
                 new Status()
@@ -92,6 +96,16 @@ namespace DataAccessLayer.Data
                 FirstName = "Ciprian",
                 LastName = "Pintilei",
                 MedicalUnitId = 1,
+                RoleId = 3
+            });
+
+            _context.Users.Add(new User()
+            {
+                Username = "roxana",
+                Password = "$KCOA$V1$10000$bRyC0Ll5o+5iHbKMDkgR1Dfqj73bu6RTRUz3viH234lBxGn5",
+                FirstName = "Rocsana",
+                LastName = "Pam Pam",
+                MedicalUnitId = 1,
                 RoleId = 1
             });
 
@@ -102,15 +116,29 @@ namespace DataAccessLayer.Data
                 Name = "Male"
             });
 
+            _context.Genders.Add(new Gender()
+            {
+                Name = "Female"
+            });
+
             _context.SaveChanges();
+
+            //_context.Donors.Add(new Donor()
+            //{
+            //    AddressId = 1,
+            //    Email = "chip@chip.com",
+            //    Phone = "0744005002",
+            //    GenderId = 1,
+            //    UserId = 1
+            //});
 
             _context.Donors.Add(new Donor()
             {
                 AddressId = 1,
-                Email = "chip@chip.com",
+                Email = "roxi@pam.com",
                 Phone = "0744005002",
-                GenderId = 1,
-                UserId = 1
+                GenderId = 2,
+                UserId = 2
             });
 
             _context.SaveChanges();
@@ -147,6 +175,7 @@ namespace DataAccessLayer.Data
                 Weight = 60,
                 BloodTypeId = 1,
                 BloodPressure = 150,
+                Birthdate=new DateTime(1997,1,14),
                 Diseases = false,
                 FeminineProblems = false,
                 Heartbeat = 90,

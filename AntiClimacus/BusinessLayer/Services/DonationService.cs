@@ -44,24 +44,31 @@ namespace BusinessLayer.Services
         public List<DonorModel> GetDonors(int medicalUnitId)
         {
             List<StatusModel> statusList = statusService.GetAllStatuses();
-            List<DonorModel> list = donorRepository.GetAll(medicalUnitId).Select(d => new DonorModel(d)).ToList();
+            var list = donorRepository.GetAll(medicalUnitId).ToList();
 
-            foreach(var donor in list)
+            if (list.Count > 0)
             {
-                donor.DonationRequest.Status.Name = statusList.FirstOrDefault(x => x.Id == donor.DonationRequest.Status.Id).Name;
+                var newList = list.Select(d => new DonorModel(d)).ToList();
+
+                foreach (var donor in newList)
+                {
+                    donor.DonationRequest.Status.Name = statusList.FirstOrDefault(x => x.Id == donor.DonationRequest.Status.Id).Name;
+                }
+
+                return newList;
             }
 
-            return list;
+            return new List<DonorModel>();
         }
 
-        public void SubmitDonorData(DonorDataModel model)
+        public void SubmitDonorData(DonorDataModel model,int donorId)
         {
             var donorData = new DonorData()
             {
                 Birthdate = model.Birthdate,
                 BloodPressure = model.BloodPressure,
                 BloodTypeId = model.BloodType.Id,
-                DonorId = model.Donor.Id,
+                DonorId = donorId,
                 Diseases = model.Diseases,
                 FeminineProblems = model.FeminineProblems,
                 Heartbeat = model.Heartbeat,
