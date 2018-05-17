@@ -3,21 +3,17 @@
     <button type=submit mat-button (click)='logout()'> Logout ({{user.username}}) </button>
   </div>
 
+ 
 
   <br>
   <br>
   <br>
-
-  <div class="add-button">
-    <button mat-button (click)="openDialog()">Add Medic</button>
-  </div>
-
   <br>
 
   <div class="container mat-elevation-z8">
     <div class="header">
       <mat-input-container floatPlaceholder="never">
-        <input matInput #filter placeholder="Filter users">
+        <input matInput #filter placeholder="Filter requests">
       </mat-input-container>
     </div>
     <mat-table #table [dataSource]="dataSource" matSort>
@@ -28,12 +24,12 @@
 
       <ng-container cdkColumnDef="firstName">
         <mat-header-cell *cdkHeaderCellDef mat-sort-header> First Name </mat-header-cell>
-        <mat-cell *cdkCellDef="let row"> {{row.firstName}} </mat-cell>
+        <mat-cell *cdkCellDef="let row"> {{row.user.firstName}} </mat-cell>
       </ng-container>
 
       <ng-container cdkColumnDef="lastName">
         <mat-header-cell *cdkHeaderCellDef mat-sort-header> Last Name </mat-header-cell>
-        <mat-cell *cdkCellDef="let row"> {{row.lastName}} </mat-cell>
+        <mat-cell *cdkCellDef="let row"> {{row.user.lastName}} </mat-cell>
       </ng-container>
 
       <ng-container cdkColumnDef="county">
@@ -46,23 +42,31 @@
         <mat-cell *cdkCellDef="let row"> {{row.address.city}} </mat-cell>
       </ng-container>
 
-      <ng-container cdkColumnDef="phone">
-        <mat-header-cell *cdkHeaderCellDef mat-sort-header> Phone </mat-header-cell>
-        <mat-cell *cdkCellDef="let row"> {{row.phone}} </mat-cell>
+      <ng-container cdkColumnDef="bloodComponentType">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header> Blood Component Type </mat-header-cell>
+        <mat-cell *cdkCellDef="let row"> {{row.bloodComponentType.name}} </mat-cell>
       </ng-container>
 
-      <ng-container cdkColumnDef="date">
-        <mat-header-cell *cdkHeaderCellDef mat-sort-header> Date </mat-header-cell>
-        <mat-cell *cdkCellDef="let row"> {{row.request.date}} </mat-cell>
+      <ng-container cdkColumnDef="status">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header> Status </mat-header-cell>
+        <mat-cell *cdkCellDef="let row"> {{row.requestStatus.name}} </mat-cell>
+      </ng-container>
+
+      <ng-container cdkColumnDef="priority">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header> Priority </mat-header-cell>
+        <mat-cell *cdkCellDef="let row"> {{row.priority}} </mat-cell>
+      </ng-container>
+
+      <ng-container cdkColumnDef="quantity">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header> Quantity </mat-header-cell>
+        <mat-cell *cdkCellDef="let row"> {{row.quantity}} </mat-cell>
       </ng-container>
 
 
       <ng-container cdkColumnDef="actions">
         <mat-header-cell *cdkHeaderCellDef>Actions</mat-header-cell>
         <mat-cell *cdkCellDef="let row">
-          <button mat-button *ngIf="hasRequest(row.request)" (click)="deleteDoctor(row.id)" style="background-color:#a319be;;color:white;display: inline-block;">Resolve eligibility</button>
-          <button mat-button *ngIf="isEligible()" (click)="deleteDoctor(row.id)", row.person.id]" style="background-color:#a319be;;color:white;display: inline-block;>Complete Donation</button>
-          <button mat-button *ngIf="!isEligible()" (click)="deleteDoctor(row.id)" style="background-color:#a319be;;color:white;display: inline-block;">Delete</button>
+          
         </mat-cell>
       </ng-container>
 

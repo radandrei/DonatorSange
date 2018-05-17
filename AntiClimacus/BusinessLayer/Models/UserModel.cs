@@ -23,14 +23,17 @@ namespace BusinessLayer.Models
 
         public UserModel(User user, bool withUnit = false)
         {
-            Id = user.Id;
-            Username = user.Username;
-            FirstName = user.FirstName;
-            LastName = user.LastName;
-            Role = new RoleModel(user.Role);
-            if (withUnit)
+            if (user != null)
             {
-                MedicalUnit = new MedicalUnitModel(user.MedicalUnit);
+                Id = user.Id;
+                Username = user.Username;
+                FirstName = user.FirstName;
+                LastName = user.LastName;
+                Role = new RoleModel(user.Role);
+                if (withUnit)
+                {
+                    MedicalUnit = new MedicalUnitModel(user.MedicalUnit);
+                }
             }
         }
     }

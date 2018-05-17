@@ -4,6 +4,7 @@ import { RegistrationFormComponent } from './registration-form/registration-form
 import { LoginFormComponent } from './login-form/login-form.component';
 import { DoctorComponent } from './doctor/doctor.component';
 import { MedicalstaffComponent } from './medicalstaff/medicalstaff.component';
+import { MedicalstaffRequestsComponent } from './medicalstaff-requests/medicalstaff-requests.component';
 
 
 const appRoutes: Routes = [
@@ -12,6 +13,7 @@ const appRoutes: Routes = [
   { path: 'donor', component: LoginFormComponent },
   { path: 'doctor', component: DoctorComponent },
   { path: 'medicalstaff', component: MedicalstaffComponent },
+  {path:'medicalstaff/distribution',component:MedicalstaffRequestsComponent},
   {path:"**",component:LoginFormComponent}
 ];
 

@@ -22,7 +22,7 @@ namespace AntiClimacus.Controllers
             this.donationRequestService = donationRequestService;
         }
 
-        // GET: api/Donation/5
+        // GET: api/Donation/getdonors/5
         [HttpGet("[action]/{id}")]
         public IActionResult GetDonors(int id)
         {
@@ -70,6 +70,32 @@ namespace AntiClimacus.Controllers
             }
 
         }
+
+        }
+
+        // GET: api/Donation/getDonor/5
+        [HttpGet("[action]/{id}")]
+        public IActionResult GetDonor(int id)
+        {
+            try
+            {
+                List<DonorModel> ret = donationService.GetDonors(id);
+
+                foreach(DonorModel donor in ret)
+                {
+                    if (donor.Id == id)
+                        return new OkObjectResult(donor);
+                }
+
+                return new OkObjectResult(null);
+            }
+            catch (Exception ex)
+            {
+                return new BadRequestObjectResult(ex);
+            }
+
+        }
+
 
         // POST: api/Donation
         [HttpPost("[action]")]

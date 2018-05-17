@@ -58,6 +58,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { DoctorComponent } from './doctor/doctor.component';
 import { MedicalstaffComponent } from './medicalstaff/medicalstaff.component';
 import { MedicalstaffRequestsComponent } from './medicalstaff-requests/medicalstaff-requests.component';
+import { DialogVerifyEligibility } from './dialogs/eligibilityVerification';
 
 @NgModule({
   exports: [
@@ -94,8 +95,7 @@ import { MedicalstaffRequestsComponent } from './medicalstaff-requests/medicalst
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-  ],
-  declarations: [DoctorComponent, MedicalstaffComponent, MedicalstaffRequestsComponent],
+  ]
 })
 export class DemoMaterialModule {}
 
@@ -103,7 +103,11 @@ export class DemoMaterialModule {}
   declarations: [
     AppComponent,
     RegistrationFormComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    DoctorComponent, 
+    MedicalstaffComponent,
+    MedicalstaffRequestsComponent,
+    DialogVerifyEligibility 
   ],
   imports: [
     BrowserModule,
@@ -126,6 +130,6 @@ export class DemoMaterialModule {}
     },
     UserService,ConfigService],
   bootstrap: [AppComponent],
-  entryComponents: []
+  entryComponents: [DialogVerifyEligibility]
 })
 export class AppModule { }

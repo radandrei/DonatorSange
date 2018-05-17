@@ -4,6 +4,7 @@ import { ConfigService } from '../utils/config.service';
 import { Observable } from 'rxjs/Rx';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { MedicalRequest } from '../models/medicalrequest';
 
 
 
@@ -11,26 +12,26 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 export class RequestService {
   baseUrl: string = '';
-  RequestUrl;
+  MedicalRequestUrl;
 
 
   constructor(private http: HttpClient, private configService: ConfigService, private router: Router) {
     this.baseUrl = configService.getApiURI();
-    this.RequestUrl = this.baseUrl + "/Request";
+    this.MedicalRequestUrl = this.baseUrl + "/MedicalRequest";
   }
 
-  extractData(result: Response): Request[] {
+  extractData(result: Response): MedicalRequest[] {
     return result.json();
   }
 
 
-  add(body): Observable<Request> {
+  add(body): Observable<MedicalRequest> {
 
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
 
-    return this.http.post<Request>(this.RequestUrl + "/add", body, httpOptions);
+    return this.http.post<MedicalRequest>(this.MedicalRequestUrl + "/add", body, httpOptions);
 
   }
 
@@ -39,26 +40,26 @@ export class RequestService {
     return Promise.resolve(false);
   }
 
-  deleteRequest(id) {
-    this.http.delete(this.RequestUrl + "/delete/" + id)
+  deleteMedicalRequest(id) {
+    this.http.delete(this.MedicalRequestUrl + "/delete/" + id)
       .toPromise()
       .then()
       .catch(this.loginFailed);
   }
 
-  getRequests(id: number | string): Observable<Request[]> {
-    return this.http.get<Request[]>(this.RequestUrl + "/getbyuser/" + id);
+  getMedicalRequests(id: number | string): Observable<MedicalRequest[]> {
+    return this.http.get<MedicalRequest[]>(this.MedicalRequestUrl + "/getbyuser/" + id);
   }
 
-  getAllRequests(id: number | string): Observable<Request[]> {
-    return this.http.get<Request[]>(this.RequestUrl + "/getallbydonationcenter/" + id);
+  getAllMedicalRequests(): Observable<MedicalRequest[]> {
+    return this.http.get<MedicalRequest[]>(this.MedicalRequestUrl + "/getallrequests");
   }
 
-  addRequest(request: Request): Observable<boolean> {
+  addMedicalRequest(request: MedicalRequest): Observable<boolean> {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    return this.http.post<boolean>(this.RequestUrl + "/addRequest", request, httpOptions);
+    return this.http.post<boolean>(this.MedicalRequestUrl + "/addMedicalRequest", request, httpOptions);
   }
 
 }
