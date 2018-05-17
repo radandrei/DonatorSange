@@ -6,7 +6,7 @@ export class DonorData{
     birthdate:Date;
     bloodType:BloodType;
     weight:number;
-    heartBeat:number;
+    heartbeat:number;
     bloodPressure:number;
     interventions:boolean;
     feminineProblems:boolean;

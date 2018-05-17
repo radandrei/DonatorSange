@@ -19,7 +19,7 @@ export class DonorService {
 
   constructor(private http: HttpClient, private configService: ConfigService, private router: Router) {
     this.baseUrl = configService.getApiURI();
-    this.DonorUrl = this.baseUrl + "/Donor";
+    this.DonorUrl = this.baseUrl + "/Donation";
   }
 
   extractData(result: Response): Donor[] {
@@ -47,12 +47,12 @@ export class DonorService {
       .catch(this.loginFailed);
   }
 
-  getDonors(): Observable<Donor[]> {
-    return this.http.get<Donor[]>(this.DonorUrl + "/getall");
+  getDonors(medicalUnitId): Observable<Donor[]> {
+    return this.http.get<Donor[]>(this.DonorUrl + "/getdonors/"+medicalUnitId);
   }
 
   getDonor(donorId):Observable<Donor>{
-    return this.http.get<Donor>(this.DonorUrl+"/getbyid/"+donorId);
+    return this.http.get<Donor>(this.DonorUrl+"/getdonor/"+donorId);
   }
 
 

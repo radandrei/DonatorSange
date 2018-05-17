@@ -9,13 +9,12 @@ import { DonorService } from "../services/donor.service";
   selector: 'eligibility-verification',
   templateUrl: '/eligibilityVerification.html',
   styleUrls: ['/eligibilityVerification.css'],
-  providers: []
+  providers: [DonorService]
 })
-export class DialogVerifyEligibiliy {
-
-    birthDate;
+export class DialogVerifyEligibility {
+    birthdate;
     weight;
-    heartBeat;
+    heartbeat;
     bloodPressure;
     interventions;
     feminineProblems;
@@ -25,51 +24,42 @@ export class DialogVerifyEligibiliy {
     donorId;
     donorData;
     donor;
+    date;
+    confirm;
+    confirmation=false;
 
-
-  constructor(public dialogRef: MatDialogRef<DialogVerifyEligibiliy>,public donorService:DonorService,@Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(public dialogRef: MatDialogRef<DialogVerifyEligibility>,public donorService:DonorService,@Inject(MAT_DIALOG_DATA) public data: any) {
     this.donorId=data.donorId;
     this.donorService.getDonor(this.donorId).subscribe(donor=>{
       this.donor=donor;
       this.donorData=donor.donorData;
-      this.weight=donor.donorData.weight;
-      this.heartBeat=donor.donorData.heartBeat;
-      this.bloodPressure=donor.donorData.bloodPressure;
-      this.interventions=donor.donorData.interventions;
-      this.feminineProblems=donor.donorData.feminineProblems;
-      this.junkFood=donor.donorData.junkFood;
-      this.onDrugs=donor.donorData.onDrugs;
-      this.diseases=donor.donorData.diseases;
     }
     )
     
   }
 
-  resolveEligibility(birthDate,weight,heartBeat,bloodPreassure,interventions,feminineProblems,junkFood,onDrugs,diseases){
+  resolveEligibility(birthdate,weight,heartbeat,bloodPressure,interventions,feminineProblems,junkFood,onDrugs,diseases){
     let year=1000*60*60*24*365;
-    let birthDateValidation = (birthDate.getTime()>(new Date().getTime()+year*18&&birthDate.getTime()<(new Date().getTime()+year*60)));
+    let donorTime=new Date(birthdate).getTime();
+    let actualTime=new Date().getTime();
+    let birthDateValidation = (donorTime+18*year<actualTime&&donorTime+60*year>actualTime)
     let weightValidation=(weight>50);
-    let heartBeatValidation=(heartBeat>60&&heartBeat<100);
-    let bloodPreassureValidation=(bloodPreassure>100&&bloodPreassure<180);
-    let finalResult=(birthDateValidation&&weightValidation&&heartBeatValidation&&bloodPreassureValidation&&!interventions&&!feminineProblems&&!junkFood&&!onDrugs&&!diseases)
+    let heartBeatValidation=(heartbeat>60&&heartbeat<100);
+    let bloodPreassureValidation=(bloodPressure>100&&bloodPressure<180);
+    let finalResult=(birthDateValidation&&weightValidation&&heartBeatValidation&&bloodPreassureValidation&&interventions&&feminineProblems&&junkFood&&onDrugs&&diseases)
     return finalResult;
   }
 
-  add(birthDate,weight,heartBeat,bloodPreassure,interventions,feminineProblems,junkFood,onDrugs,diseases) {
-    if (weight==""||birthDate == "" || bloodPreassure == "" || interventions == "" || feminineProblems == ""||junkFood=="" || this.onDrugs=="" || this.diseases=="") {
-      alert("The fields are not complete! The donation is at risk.");
-      return "error";
-    }
-
+  add(birthdate,weight,heartbeat,bloodPressure,interventions,feminineProblems,junkFood,onDrugs,diseases) {
     this.donorData.weight=weight;
-    this.donorData.birthDate=birthDate;
-    this.donorData.heartBeat=heartBeat;
-    this.donorData.bloodPreassure=bloodPreassure;
-    this.donorData.interventions=interventions;
-    this.donorData.feminineProblems=feminineProblems;
-    this.donorData.junkFood=junkFood;
-    this.donorData.onDrugs=onDrugs;
-    this.donorData.diseases=diseases;
+    this.donorData.birthdate=birthdate;
+    this.donorData.heartBeat=heartbeat;
+    this.donorData.bloodPreassure=bloodPressure;
+    this.donorData.interventions=!interventions;
+    this.donorData.feminineProblems=!feminineProblems;
+    this.donorData.junkFood=!junkFood;
+    this.donorData.onDrugs=!onDrugs;
+    this.donorData.diseases=!diseases;
     
     this.donorService.updateDonorData(this.donorData).subscribe(
       response => {
@@ -77,7 +67,7 @@ export class DialogVerifyEligibiliy {
         alert("Data updated!");
       },
       error => {
-        alert("Medic creation issue!");
+        alert("Data update issue!");
       }
 
     ); // the call

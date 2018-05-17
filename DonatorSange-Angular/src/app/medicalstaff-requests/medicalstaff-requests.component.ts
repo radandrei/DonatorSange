@@ -1,32 +1,34 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MatPaginator, MatSort, MatDialog } from '@angular/material';
-import { HttpClient } from 'selenium-webdriver/http';
 import { Router } from '@angular/router';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { DataSource } from '@angular/cdk/collections';
+import { MedicalRequest } from '../models/medicalrequest';
+import { HttpClient } from '@angular/common/http';
 import { RequestService } from '../services/request.service';
 
 @Component({
   selector: 'app-medicalstaff-requests',
   templateUrl: './medicalstaff-requests.component.html',
-  styleUrls: ['./medicalstaff-requests.component.css']
+  styleUrls: ['./medicalstaff-requests.component.css'],
+  providers:[RequestService]
 })
 export class MedicalstaffRequestsComponent implements OnInit {
 
-  isplayedColumns = ['firstName', 'lastName', 'county','city','phone','date'];
+  displayedColumns = ['firstName', 'lastName', 'county','city','bloodComponentType','priority','quantity','status'];
   database: Database | null;
-  dataSource: DataSourceRequest | null;
-  selectedRequest: number;
-  user = JSON.parse(localStorage.getItem('myRequest'));
+  dataSource: DataSourceMedicalRequest | null;
+  selectedMedicalRequest: number;
+  user = JSON.parse(localStorage.getItem('myUser'));
  
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild('filter') filter: ElementRef;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(http: HttpClient, private RequestService: RequestService, public dialog: MatDialog, private router:Router) {
-    this.database = new Database(http, this.RequestService,router);
-  }
+  // constructor(http: HttpClient, private MedicalRequestService: MedicalRequestService, public dialog: MatDialog, private router:Router) {
+  //   this.database = new Database(http, this.MedicalRequestService,router);
+  // }
 
 
   dateToString(date: Date): string {
@@ -64,7 +66,7 @@ export class MedicalstaffRequestsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dataSource = new DataSourceRequest(this.database, this.paginator, this.sort);
+    this.dataSource = new DataSourceMedicalRequest(this.database, this.paginator, this.sort);
     Observable.fromEvent(this.filter.nativeElement, 'keyup')
       .debounceTime(150)
       .distinctUntilChanged()
@@ -78,10 +80,10 @@ export class MedicalstaffRequestsComponent implements OnInit {
 
 /** An example database that the data source uses to retrieve data for the table. */
 export class Database {
-  user = JSON.parse(localStorage.getItem('myRequest'));
+  user = JSON.parse(localStorage.getItem('myUser'));
 
-  /** Adds a new Request to the database. */
-  addRequests(membersToAdd: Array<Request>) {
+  /** Adds a new MedicalRequest to the database. */
+  addMedicalRequests(membersToAdd: Array<MedicalRequest>) {
     for (let i = 0; i < membersToAdd.length; i++) {
       const copiedData = this.data.slice();
       copiedData.push(membersToAdd[i]);
@@ -90,14 +92,14 @@ export class Database {
   }
 
   /** Stream that emits whenever the data has been modified. */
-  dataChange: BehaviorSubject<Request[]> = new BehaviorSubject<Request[]>([]);
-  get data(): Request[] { return this.dataChange.value; }
+  dataChange: BehaviorSubject<MedicalRequest[]> = new BehaviorSubject<MedicalRequest[]>([]);
+  get data(): MedicalRequest[] { return this.dataChange.value; }
 
-  constructor(private http: HttpClient, RequestService: RequestService, private router:Router) {
-    this.user = JSON.parse(localStorage.getItem('myRequest'));
-    RequestService.getRequests(donationCenterId)
+  constructor(private http: HttpClient, MedicalService: RequestService, private router:Router) {
+    this.user = JSON.parse(localStorage.getItem('myMedicalRequest'));
+    MedicalService.getAllMedicalRequests()
       .subscribe(
-        Requests => { this.addRequests(Requests) },
+        MedicalRequests => { this.addMedicalRequests(MedicalRequests) },
         error => {
           if (error.status == 403)
             this.router.navigateByUrl("login");
@@ -105,13 +107,13 @@ export class Database {
       )
   };
 
-  getRequest(id: number): Request {
-    const Requests: Request[] = this.data;
-    const length: number = Requests.length;
+  getMedicalRequest(id: number): MedicalRequest {
+    const MedicalRequests: MedicalRequest[] = this.data;
+    const length: number = MedicalRequests.length;
     let i;
     for (i = 0; i < length; i++) {
-      if (Requests[i].id == id)
-        return Requests[i]
+      if (MedicalRequests[i].id == id)
+        return MedicalRequests[i]
     }
     return null;
   }
@@ -125,7 +127,7 @@ export class Database {
  * the underlying data. Instead, it only needs to take the data and send the table exactly what
  * should be rendered.
  */
-export class DataSourceRequest extends DataSource<any> {
+export class DataSourceMedicalRequest extends DataSource<any> {
   _filterChange = new BehaviorSubject('');
   get filter(): string { return this._filterChange.value; }
   set filter(filter: string) { this._filterChange.next(filter); }
@@ -135,7 +137,7 @@ export class DataSourceRequest extends DataSource<any> {
   filterLength: number = this._database.data.length;
 
   /** Connect function called by the table to retrieve one stream containing the data to render. */
-  connect(): Observable<Request[]> {
+  connect(): Observable<MedicalRequest[]> {
     const displayDataChanges = [
       this._database.dataChange,
       this._paginator.page,
@@ -145,8 +147,8 @@ export class DataSourceRequest extends DataSource<any> {
 
     return Observable.merge(...displayDataChanges).map(() => {
       const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
-      const elements = this._database.data.filter((item: Request) => {
-        let searchStr = item.;
+      const elements = this._database.data.filter((item: MedicalRequest) => {
+        let searchStr = "";
         return searchStr.indexOf(this.filter.toLowerCase()) != -1;
       });
       this.filterLength = elements.length;
@@ -154,7 +156,7 @@ export class DataSourceRequest extends DataSource<any> {
     });
   }
 
-  getSortedData(elements: Request[]): Request[] {
+  getSortedData(elements: MedicalRequest[]): MedicalRequest[] {
     const data = elements.slice();
     if (!this._sort.active || this._sort.direction == '') { return data; }
 
@@ -163,12 +165,13 @@ export class DataSourceRequest extends DataSource<any> {
       let propertyB: number | string | Date | boolean = '';
 
       switch (this._sort.active) {
-        case 'firstName': [propertyA, propertyB] = [(a.firstName), (b.firstName)]; break;
-        case 'lastName': [propertyA, propertyB] = [(a.lastName), (b.lastName)]; break;
+        case 'firstName': [propertyA, propertyB] = [(a.user.firstName), (b.user.firstName)]; break;
+        case 'lastName': [propertyA, propertyB] = [(a.user.lastName), (b.user.lastName)]; break;
         case 'county': [propertyA, propertyB] = [(a.address.county), (b.address.county)]; break;
         case 'city': [propertyA, propertyB] = [(a.address.city), (b.address.city)]; break;
-        case 'phone': [propertyA, propertyB] = [(a.phone), (b.phone)]; break;
-        case 'date': [propertyA, propertyB] = [(a.request), (b.request)]; break;
+        case 'bloodComponentType': [propertyA, propertyB] = [(a.bloodComponentType.name), (b.bloodComponentType.name)]; break;
+        case 'priority': [propertyA, propertyB] = [(a.priority), (b.priority)]; break;
+        case 'status': [propertyA, propertyB] = [(a.requestStatus.name), (b.requestStatus.name)]; break;
       }
 
       let valueA = isNaN(+propertyA) ? propertyA : +propertyA;

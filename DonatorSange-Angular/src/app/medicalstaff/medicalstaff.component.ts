@@ -1,25 +1,27 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MatPaginator, MatSort, MatDialog } from '@angular/material';
-import { HttpClient } from 'selenium-webdriver/http';
 import { Router } from '@angular/router';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { DataSource } from '@angular/cdk/collections';
 import { DonorService } from '../services/donor.service';
 import { Donor } from '../models/donor';
-import { DialogVerifyEligibiliy } from '../dialogs/eligibilityVerification';
+import { HttpClient } from '@angular/common/http';
+import { DialogVerifyEligibility } from '../dialogs/eligibilityVerification';
 
 @Component({
-  selector: 'app-medicalstaff',
+  selector: 'medicalstaff',
   templateUrl: './medicalstaff.component.html',
-  styleUrls: ['./medicalstaff.component.css']
+  styleUrls: ['./medicalstaff.component.css'],
+  providers:[DonorService]
 })
 export class MedicalstaffComponent implements OnInit {
 
-  isplayedColumns = ['firstName', 'lastName', 'county','city','phone','date','bloodType'];
+  displayedColumns = ['firstName', 'lastName', 'county','city','phone','date','bloodType','actions'];
   database: Database | null;
   dataSource: DataSourceDonor | null;
   selectedDonor: number;
-  user = JSON.parse(localStorage.getItem('myDonor'));
+  user = JSON.parse(localStorage.getItem('myUser'));
+  eligibilityVerification=false;
  
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -33,11 +35,36 @@ export class MedicalstaffComponent implements OnInit {
 
   eligibilityDialog(id:number) {
         let dialogRef;
-        dialogRef = this.dialog.open(DialogVerifyEligibiliy, { width: '25%', height: '40%',data:{donorId:id} });
+        dialogRef = this.dialog.open(DialogVerifyEligibility, { width: '50%',height:'80%',data:{donorId:id} });
+
+        dialogRef.afterClosed().subscribe(result=>{
+          console.log(result);
+          if(result=='Submit')
+            this.eligibilityVerification=true;
+          // window.location.reload();
+        });
+
       }
 
-  isEligible(){
+  isEligible(donorId){
+    let donor = this.database.getDonor(donorId);
+    let year=1000*60*60*24*365;
+    let donorTime=new Date(donor.birthdate).getTime();
+    let actualTime=new Date().getTime();
+    let birthDateValidation = (donorTime+18*year<actualTime&&donorTime+60*year>actualTime)
+    let weightValidation=(donor.donorData.weight>50);
+    let bloodPreassureValidation=(donor.donorData.bloodPressure>100&&donor.donorData.bloodPressure<180);
+    let heartBeatValidation=(donor.donorData.heartbeat>60&&donor.donorData.heartbeat<100);
+    let finalResult=(birthDateValidation&&weightValidation&&heartBeatValidation&&bloodPreassureValidation&&!donor.donorData.interventions&&!donor.donorData.feminineProblems&&!donor.donorData.junkFood&&!donor.donorData.onDrugs&&!donor.donorData.diseases);
+    return finalResult&&this.eligibilityVerification;
+  }
 
+  isVerified(){
+    return this.eligibilityVerification;
+  }
+
+  hasRequest(request){
+    return (request  != null );
   }
     
 
@@ -106,8 +133,8 @@ export class Database {
   get data(): Donor[] { return this.dataChange.value; }
 
   constructor(private http: HttpClient, DonorService: DonorService, private router:Router) {
-    this.user = JSON.parse(localStorage.getItem('myDonor'));
-    DonorService.getDonors()
+    this.user = JSON.parse(localStorage.getItem('myUser'));
+    DonorService.getDonors(this.user.medicalUnit.id)
       .subscribe(
         Donors => { this.addDonors(Donors) },
         error => {
@@ -158,7 +185,7 @@ export class DataSourceDonor extends DataSource<any> {
     return Observable.merge(...displayDataChanges).map(() => {
       const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
       const elements = this._database.data.filter((item: Donor) => {
-        let searchStr = item.user.firstName+item.user.lastName+item.address.country+item.address.city+item.phone;
+        let searchStr = item.user.firstName+item.user.lastName+item.address.county+item.address.city+item.phone;
         return searchStr.indexOf(this.filter.toLowerCase()) != -1;
       });
       this.filterLength = elements.length;
@@ -181,7 +208,7 @@ export class DataSourceDonor extends DataSource<any> {
         case 'city': [propertyA, propertyB] = [(a.address.city), (b.address.city)]; break;
         case 'phone': [propertyA, propertyB] = [(a.phone), (b.phone)]; break;
         case 'date': [propertyA, propertyB] = [(a.donationRequest.date.getTime()), (b.donationRequest.date.getTime())]; break;
-        //case 'bloodType': [propertyA, propertyB] = [(a.donationRequest.date), (b.donationRequest.date)]; break;
+        //case 'bloodType': [propertyA, propertyB] = [(a.donationData), (b.donationRequest.date)]; break;
       }
 
       let valueA = isNaN(+propertyA) ? propertyA : +propertyA;

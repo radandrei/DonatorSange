@@ -1,4 +1,4 @@
-export class BloodComponentType{
+export class MedicalUnitType{
     id:number;
     name:string;
 }
