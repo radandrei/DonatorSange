@@ -169,7 +169,7 @@ export class DataSourceMedicalRequest extends DataSource<any> {
         case 'lastName': [propertyA, propertyB] = [(a.user.lastName), (b.user.lastName)]; break;
         case 'county': [propertyA, propertyB] = [(a.address.county), (b.address.county)]; break;
         case 'city': [propertyA, propertyB] = [(a.address.city), (b.address.city)]; break;
-        case 'bloodComponentType': [propertyA, propertyB] = [(a.bloodComponentType.name), (b.bloodComponentType.name)]; break;
+        case 'bloodComponentType': [propertyA, propertyB] = [(a.bloodComponentType.bloodComponent.name + a.bloodComponentType.bloodType.name), (b.bloodComponentType.bloodComponent.name+b.bloodComponentType.bloodType.name)]; break;
         case 'priority': [propertyA, propertyB] = [(a.priority), (b.priority)]; break;
         case 'status': [propertyA, propertyB] = [(a.requestStatus.name), (b.requestStatus.name)]; break;
       }
