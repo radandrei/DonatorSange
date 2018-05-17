@@ -11,9 +11,12 @@ namespace BusinessLayer.Models
 
         public MedicalUnitModel(MedicalUnit medicalUnit)
         {
-            Id = medicalUnit.Id;
-            Address = new AddressModel(medicalUnit.Address);
-            MedicalUnitType = new MedicalUnitTypeModel(medicalUnit.MedicalUnitType);
+            if (medicalUnit != null)
+            {
+                Id = medicalUnit.Id;
+                Address = new AddressModel(medicalUnit.Address);
+                MedicalUnitType = new MedicalUnitTypeModel(medicalUnit.MedicalUnitType);
+            }
         }
     }
 }

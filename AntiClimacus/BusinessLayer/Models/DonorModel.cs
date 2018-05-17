@@ -9,7 +9,7 @@ namespace BusinessLayer.Models
     public class DonorModel
     {
         public int Id { get; set; }
-        public AddressModel Adress { get; set; }
+        public AddressModel Address { get; set; }
         public DateTime Birthdate { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
@@ -21,7 +21,7 @@ namespace BusinessLayer.Models
         public DonorModel(Donor donor)
         {
             Id = donor.Id;
-            Adress = new AddressModel(donor.Address);
+            Address = new AddressModel(donor.Address);
             Gender = new GenderModel(donor.Gender);
             Birthdate = donor.Birthdate;
             Phone = donor.Phone;

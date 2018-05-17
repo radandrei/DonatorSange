@@ -63,7 +63,7 @@ namespace BusinessLayer
 
         public User GetById(int id)
         {
-            return context.Users.Where(x => x.Id == id).Include(z => z.Role).Include(u=>u.MedicalUnit.Address).Include(d=>d.MedicalUnit.MedicalUnitTypeId)
+            return context.Users.Where(x => x.Id == id).Include(z => z.Role).Include(u => u.MedicalUnit).Include(d => d.MedicalUnit.MedicalUnitType).Include(a => a.MedicalUnit.Address)
                 .AsNoTracking().FirstOrDefault();
         }
 
