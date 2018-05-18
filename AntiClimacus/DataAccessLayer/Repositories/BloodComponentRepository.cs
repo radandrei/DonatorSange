@@ -32,9 +32,24 @@ namespace DataAccessLayer.Repositories
             return context.BloodComponents.ToList();
         }
 
+        public List<BloodComponentType> GetAllTypes()
+        {
+            return context.BloodComponentTypes.ToList();
+        }
+
         public BloodComponent GetById(int Id)
         {
             throw new NotImplementedException();
+        }
+
+        public void SubmitDonations(List<BloodDonation> donations)
+        {
+            foreach( var donation in donations)
+            {
+                context.BloodDonations.Add(donation);
+            }
+
+            context.SaveChanges();
         }
     }
 }

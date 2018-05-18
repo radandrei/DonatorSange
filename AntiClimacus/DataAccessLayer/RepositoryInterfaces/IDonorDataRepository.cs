@@ -8,5 +8,6 @@ namespace DataAccessLayer.RepositoryInterfaces
 {
     public interface IDonorDataRepository : IBaseRepository<DonorData>
     {
+        DonorData GetByDonorId(int donorId);
     }
 }

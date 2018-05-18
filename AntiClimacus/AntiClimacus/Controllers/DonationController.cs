@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AntiClimacus.Models;
 using BusinessLayer.Models;
 using BusinessLayer.ServiceInterfaces;
 using Microsoft.AspNetCore.Http;
@@ -71,6 +72,8 @@ namespace AntiClimacus.Controllers
 
         }
 
+
+
         // GET: api/Donation/getDonor/5
         [HttpGet("[action]/{id}")]
         public IActionResult GetDonor(int id)
@@ -79,7 +82,7 @@ namespace AntiClimacus.Controllers
             {
                 List<DonorModel> ret = donationService.GetDonors(id);
 
-                foreach(DonorModel donor in ret)
+                foreach (DonorModel donor in ret)
                 {
                     if (donor.Id == id)
                         return new OkObjectResult(donor);
@@ -100,8 +103,8 @@ namespace AntiClimacus.Controllers
         public IActionResult SubmitDonorData([FromBody]DonorModel donor)
         {
             try
-             {
-                donationService.SubmitDonorData(donor.DonorData,donor.Id);
+            {
+                donationService.SubmitDonorData(donor.DonorData, donor.Id);
                 donationRequestService.UpdateStatusOfDonorRequest(donor.Id, 2);
 
                 return new OkObjectResult("donor data updated");
@@ -111,6 +114,32 @@ namespace AntiClimacus.Controllers
                 return new BadRequestObjectResult(ex);
             }
         }
+
+        // POST: api/Donation
+        [HttpPost("[action]")]
+        public IActionResult SubmitBloodComponents([FromBody]DonorBloodDonation donation)
+        {
+            try
+            {
+                var components = donation.BloodComponents.Select(x => new BloodComponentQuantityModel()
+                {
+                    BloodComponent = new BloodComponentModel()
+                    {
+                        Id = x.BloodComponent.Id,
+                        Name = x.BloodComponent.Name
+                    },
+                    Quantity = x.Quantity
+                }).ToList();
+
+                donationService.SubmitDonationFromDonor(donation.DonorId, components, donation.Diseases);
+                return new OkObjectResult(true);
+            }
+            catch (Exception)
+            {
+                return new BadRequestObjectResult(false);
+            }
+        }
+
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]

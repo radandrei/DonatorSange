@@ -1,0 +1,28 @@
+
+<mat-dialog-content>
+    <h1>Enter blood component quantities</h1>
+    <fieldset>
+        Diseases:
+        <input #diseases type="checkbox" [checked]="donation" (change)="donation = !donation" style="margin-left:3px;border-top:0px;border-left:0px;border-right:0px;" />
+        <br>
+    </fieldset>
+
+    <fieldset *ngFor = "let component of componentQuantities">
+        <label>{{component.bloodComponent.name}}</label>
+        Quantity:
+        <input type="number" style="margin-left:3px;border-top:0px;border-left:0px;border-right:0px;" [(ngModel)]="component.quantity"/>
+        <br>
+    </fieldset>
+
+    <br>
+    <br>
+    <div class="donation" *ngIf="diseases.checked==true">
+        We will alert the donor of their condition
+        <button type='submit' mat-dialog-close="Submit">Submit</button>
+    </div>
+    <div class="donation" *ngIf="diseases.checked==false">
+        <button type='submit' mat-dialog-close="Submit" (click)='save()'>Submit</button>
+    </div>
+    <br>
+    <br>
+</mat-dialog-content>

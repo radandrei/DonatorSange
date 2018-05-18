@@ -1,9 +1,11 @@
+import { BloodComponent } from "./bloodComponent";
+
 export class BloodComponentQuantity{
-    bloodComponentId: number;
+    bloodComponent: BloodComponent;
     quantity: number;
 
-    constructor(id, quantity){
-        this.bloodComponentId=id;
+    constructor(bloodComponent, quantity){
+        this.bloodComponent=bloodComponent;
         this.quantity=quantity;
     }
 }

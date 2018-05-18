@@ -9,12 +9,12 @@ import { DonorData } from '../models/donorData';
 import { BloodType } from '../models/bloodType';
 import { BloodComponentType } from '../models/bloodComponentType'
 import { BloodComponent } from '../models/bloodComponent';
+import { BloodComponentQuantity } from '../models/bloodComponentQuantity';
+import { DonorBloodDonation } from '../models/donorBloodDonation';
 
 
 @Injectable()
-
 export class DonationService {
-
     baseUrl: string = '';
     DonationUrl;
 
@@ -22,16 +22,6 @@ export class DonationService {
     constructor(private http: HttpClient, private configService: ConfigService, private router: Router) {
         this.baseUrl = configService.getApiURI();
         this.DonationUrl = this.baseUrl + "/Donation";
-    }
-
-    add(body): Observable<Donor> {
-
-        const httpOptions = {
-            headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-        };
-
-        return this.http.post<Donor>(this.DonationUrl + "/add", body, httpOptions);
-
     }
 
     getBloodComponents(): Observable<BloodComponent[]> {
@@ -46,14 +36,10 @@ export class DonationService {
         return this.http.get<Donor>(this.DonationUrl + "/getbyid/" + donorId);
     }
 
+    submit(donorId: number, bloodComponents: Array<BloodComponentQuantity>, diseases: boolean): Observable<boolean> {
+        debugger
+        var donation = new DonorBloodDonation(donorId, bloodComponents, diseases);
 
-    updateDonorData(donorData: DonorData) {
-        const httpOptions = {
-            headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-        };
-
-        const body = JSON.stringify(donorData);
-        return this.http.post(this.DonationUrl + "/updateDonorData", body, httpOptions);
-
+        return this.http.post<boolean>(this.DonationUrl + "/submitbloodcomponents/", donation);
     }
 }
