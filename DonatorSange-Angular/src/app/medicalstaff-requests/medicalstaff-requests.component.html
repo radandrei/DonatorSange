@@ -34,12 +34,12 @@
 
       <ng-container cdkColumnDef="county">
         <mat-header-cell *cdkHeaderCellDef mat-sort-header> County </mat-header-cell>
-        <mat-cell *cdkCellDef="let row"> {{row.address.county}} </mat-cell>
+        <mat-cell *cdkCellDef="let row"> {{row.medicalUnit.address.county}} </mat-cell>
       </ng-container>
 
       <ng-container cdkColumnDef="city">
         <mat-header-cell *cdkHeaderCellDef mat-sort-header> City </mat-header-cell>
-        <mat-cell *cdkCellDef="let row"> {{row.address.city}} </mat-cell>
+        <mat-cell *cdkCellDef="let row"> {{row.medicalUnit.address.city}} </mat-cell>
       </ng-container>
 
       <ng-container cdkColumnDef="bloodComponentType">
@@ -66,7 +66,7 @@
       <ng-container cdkColumnDef="actions">
         <mat-header-cell *cdkHeaderCellDef>Actions</mat-header-cell>
         <mat-cell *cdkCellDef="let row">
-          
+          <button mat-button  (click)="distributionDialog(row.id,row.bloodComponentType.id)" style="background-color:#a319be;color:white;display: inline-block;">Distribute blood</button>          
         </mat-cell>
       </ng-container>
 

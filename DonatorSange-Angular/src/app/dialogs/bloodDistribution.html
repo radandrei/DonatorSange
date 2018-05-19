@@ -1,0 +1,24 @@
+<mat-dialog-content>
+    <h1>Distribuite the BLOOD</h1>
+    <fieldset>
+        The doctor needs {{request?.quantity}} units of blood <br>
+        You got {{depositedQuantity}} units of blood.
+        <br>Choose the quantity of units for distribution:
+        <input #distributionQuantity type="number" [value]="0" style="margin-left:3px;border-top:0px;border-left:0px;border-right:0px;" />
+        <br>
+        Confirm:
+        <input #confirm type="checkbox" [checked]="confirmation" (change)="confirmation = !confirmation" style="margin-left:3px;border-top:0px;border-left:0px;border-right:0px;" />
+        <br>
+    </fieldset>
+    <br>
+    <br>
+    <div class="confirmation" *ngIf="confirm.checked==true " >
+        <div class="distribution" >
+            <br>
+            <button type='submit' mat-dialog-close="Submit" (click)='edit(distributionQuantity.value)'> </button>
+        </div>
+    </div>
+    <button type='submit' mat-dialog-close="Cancel" (click)='cancel()'>Cancel</button>
+    <br>
+    <br>
+</mat-dialog-content>

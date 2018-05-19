@@ -55,11 +55,33 @@ export class RequestService {
     return this.http.get<MedicalRequest[]>(this.MedicalRequestUrl + "/getallrequests");
   }
 
+  getRequest(id:number|string):Observable<MedicalRequest>{
+    return this.http.get<MedicalRequest>(this.MedicalRequestUrl+"/getRequest");
+  }
+
+  updateRequest(request:MedicalRequest,distributionQuantity:number){
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+
+    let data={
+      "request":request,
+      "distributonQuantity":distributionQuantity
+    }
+    
+    const body=JSON.stringify(data);
+    return this.http.post(this.MedicalRequestUrl+"/updateRequest",body,httpOptions);
+  }
+
   addMedicalRequest(request: MedicalRequest): Observable<boolean> {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
     return this.http.post<boolean>(this.MedicalRequestUrl + "/addMedicalRequest", request, httpOptions);
+  }
+
+  getBloodComponentTypeQuantity(bloodComponentTypeId):Observable<number>{
+    return this.http.get<number>(this.MedicalRequestUrl+"/getBCTQuantity/"+bloodComponentTypeId);
   }
 
 }

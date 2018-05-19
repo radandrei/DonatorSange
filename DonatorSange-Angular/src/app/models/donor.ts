@@ -7,7 +7,6 @@ import { Gender } from "./gender";
 export class Donor{
     id:number;
     address:Address;
-    birthdate:Date;
     phone:string;
     email:string;
     gender:Gender;

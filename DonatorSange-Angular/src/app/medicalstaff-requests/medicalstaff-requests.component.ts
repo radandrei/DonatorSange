@@ -6,6 +6,7 @@ import { DataSource } from '@angular/cdk/collections';
 import { MedicalRequest } from '../models/medicalrequest';
 import { HttpClient } from '@angular/common/http';
 import { RequestService } from '../services/request.service';
+import { DialogDistribution } from '../dialogs/bloodDistribution';
 
 @Component({
   selector: 'app-medicalstaff-requests',
@@ -26,9 +27,15 @@ export class MedicalstaffRequestsComponent implements OnInit {
   @ViewChild('filter') filter: ElementRef;
   @ViewChild(MatSort) sort: MatSort;
 
-  // constructor(http: HttpClient, private MedicalRequestService: MedicalRequestService, public dialog: MatDialog, private router:Router) {
-  //   this.database = new Database(http, this.MedicalRequestService,router);
-  // }
+  constructor(http: HttpClient, private MedicalRequestService: RequestService, public dialog: MatDialog, private router:Router) {
+    this.database = new Database(http, this.MedicalRequestService,router);
+  }
+
+
+  distributionDialog(id:number,idComponentType:number) {
+    let dialogRef;
+    dialogRef = this.dialog.open(DialogDistribution, { width: '50%',height:'80%',data:{requestId:id,bloodComponentTypeId:idComponentType} });
+  }
 
 
   dateToString(date: Date): string {
@@ -148,7 +155,7 @@ export class DataSourceMedicalRequest extends DataSource<any> {
     return Observable.merge(...displayDataChanges).map(() => {
       const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
       const elements = this._database.data.filter((item: MedicalRequest) => {
-        let searchStr = "";
+        let searchStr = item.user.firstName+item.user.firstName+item.medicalUnit.address.city;
         return searchStr.indexOf(this.filter.toLowerCase()) != -1;
       });
       this.filterLength = elements.length;
@@ -167,8 +174,8 @@ export class DataSourceMedicalRequest extends DataSource<any> {
       switch (this._sort.active) {
         case 'firstName': [propertyA, propertyB] = [(a.user.firstName), (b.user.firstName)]; break;
         case 'lastName': [propertyA, propertyB] = [(a.user.lastName), (b.user.lastName)]; break;
-        case 'county': [propertyA, propertyB] = [(a.address.county), (b.address.county)]; break;
-        case 'city': [propertyA, propertyB] = [(a.address.city), (b.address.city)]; break;
+        case 'county': [propertyA, propertyB] = [(a.medicalUnit.address.county), (b.medicalUnit.address.county)]; break;
+        case 'city': [propertyA, propertyB] = [(a.medicalUnit.address.city), (b.medicalUnit.address.city)]; break;
         case 'bloodComponentType': [propertyA, propertyB] = [(a.bloodComponentType.bloodComponent.name + a.bloodComponentType.bloodType.name), (b.bloodComponentType.bloodComponent.name+b.bloodComponentType.bloodType.name)]; break;
         case 'priority': [propertyA, propertyB] = [(a.priority), (b.priority)]; break;
         case 'status': [propertyA, propertyB] = [(a.requestStatus.name), (b.requestStatus.name)]; break;

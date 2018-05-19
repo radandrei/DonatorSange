@@ -9,6 +9,7 @@ import { DonorData } from '../models/donorData';
 import { BloodType } from '../models/bloodType';
 import { BloodComponentType } from '../models/bloodComponentType'
 import { BloodComponent } from '../models/bloodComponent';
+import { BloodBank } from '../models/bloodBank';
 
 
 @Injectable()
@@ -55,5 +56,9 @@ export class DonationService {
         const body = JSON.stringify(donorData);
         return this.http.post(this.DonationUrl + "/updateDonorData", body, httpOptions);
 
+    }
+
+    getBloodBankByMedicalUnitId(id:number):Observable<BloodBank>{
+        return this.http.get<BloodBank>(this.DonationUrl+"/getbankbymuid")
     }
 }
