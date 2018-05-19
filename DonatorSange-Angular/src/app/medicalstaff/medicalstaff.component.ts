@@ -7,55 +7,61 @@ import { DonorService } from '../services/donor.service';
 import { Donor } from '../models/donor';
 import { HttpClient } from '@angular/common/http';
 import { DialogVerifyEligibility } from '../dialogs/eligibilityVerification';
+import { DialogBloodDonation } from '../dialogs/bloodDonation';
 
 @Component({
   selector: 'medicalstaff',
   templateUrl: './medicalstaff.component.html',
   styleUrls: ['./medicalstaff.component.css'],
-  providers:[DonorService]
+  providers: [DonorService]
 })
 export class MedicalstaffComponent implements OnInit {
 
-  displayedColumns = ['firstName', 'lastName', 'county','city','phone','date','bloodType','actions'];
+  displayedColumns = ['firstName', 'lastName', 'county', 'city', 'phone', 'date', 'bloodType', 'actions'];
   database: Database | null;
   dataSource: DataSourceDonor | null;
   selectedDonor: number;
   user = JSON.parse(localStorage.getItem('myUser'));
-  eligibilityVerification=false;
- 
+  eligibilityVerification = false;
+
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild('filter') filter: ElementRef;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(http: HttpClient, private DonorService: DonorService, public dialog: MatDialog, private router:Router) {
-    this.database = new Database(http, this.DonorService,router);
+  constructor(http: HttpClient, private DonorService: DonorService, public dialog: MatDialog, private router: Router) {
+    this.database = new Database(http, this.DonorService, router);
   }
 
 
-  eligibilityDialog(id:number) {
-        let dialogRef;
-        dialogRef = this.dialog.open(DialogVerifyEligibility, { width: '50%',height:'80%',data:{donorId:id} });
-      }
+  eligibilityDialog(id: number) {
+    let dialogRef;
+    dialogRef = this.dialog.open(DialogVerifyEligibility, { width: '50%', height: '80%', data: { donorId: id } });
+  }
 
-  isEligible(donorId){
+  donationDialog(id: number) {
+    let dialogRef;
+    dialogRef = this.dialog.open(DialogBloodDonation, { width: '50%', height: '80%', data: { donorId: id } });
+  }
+
+  isEligible(donorId) {
     let donor = this.database.getDonor(donorId);
-    let year=1000*60*60*24*365;
-    let donorTime=new Date(donor.donorData.birthdate).getTime();
-    let actualTime=new Date().getTime();
-    let birthDateValidation = (donorTime+18*year<actualTime&&donorTime+60*year>actualTime)
-    let weightValidation=(donor.donorData.weight>50);
-    let bloodPreassureValidation=(donor.donorData.bloodPressure>100&&donor.donorData.bloodPressure<180);
-    let heartBeatValidation=(donor.donorData.heartbeat>60&&donor.donorData.heartbeat<100);
-    let finalResult=(birthDateValidation&&weightValidation&&heartBeatValidation&&bloodPreassureValidation&&!donor.donorData.interventions&&!donor.donorData.feminineProblems&&!donor.donorData.junkFood&&!donor.donorData.onDrugs&&!donor.donorData.diseases);
+    let year = 1000 * 60 * 60 * 24 * 365;
+    let donorTime = new Date(donor.donorData.birthdate).getTime();
+    let actualTime = new Date().getTime();
+    let birthDateValidation = (donorTime + 18 * year < actualTime && donorTime + 60 * year > actualTime)
+    let weightValidation = (donor.donorData.weight > 50);
+    let bloodPreassureValidation = (donor.donorData.bloodPressure > 100 && donor.donorData.bloodPressure < 180);
+    let heartBeatValidation = (donor.donorData.heartbeat > 60 && donor.donorData.heartbeat < 100);
+    let finalResult = (birthDateValidation && weightValidation && heartBeatValidation && bloodPreassureValidation && !donor.donorData.interventions && !donor.donorData.feminineProblems && !donor.donorData.junkFood && !donor.donorData.onDrugs && !donor.donorData.diseases);
     return finalResult;
   }
 
 
-  hasRequest(request){
-    return (request  != null );
+  hasRequest(request) {
+    return (request != null);
   }
-    
+
 
   dateToString(date: Date): string {
     var currentTime = new Date(date);
@@ -83,12 +89,12 @@ export class MedicalstaffComponent implements OnInit {
   }
 
 
-  isDoctor(role){
-    return (role=='Doctor');
+  isDoctor(role) {
+    return (role == 'Doctor');
   }
 
-  isPatient(role){
-    return (role=='Patient');
+  isPatient(role) {
+    return (role == 'Patient');
   }
 
   ngOnInit() {
@@ -121,7 +127,7 @@ export class Database {
   dataChange: BehaviorSubject<Donor[]> = new BehaviorSubject<Donor[]>([]);
   get data(): Donor[] { return this.dataChange.value; }
 
-  constructor(private http: HttpClient, DonorService: DonorService, private router:Router) {
+  constructor(private http: HttpClient, DonorService: DonorService, private router: Router) {
     this.user = JSON.parse(localStorage.getItem('myUser'));
     DonorService.getDonors(this.user.medicalUnit.id)
       .subscribe(
@@ -174,7 +180,7 @@ export class DataSourceDonor extends DataSource<any> {
     return Observable.merge(...displayDataChanges).map(() => {
       const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
       const elements = this._database.data.filter((item: Donor) => {
-        let searchStr = item.user.firstName+item.user.lastName+item.address.county+item.address.city+item.phone;
+        let searchStr = item.user.firstName + item.user.lastName + item.address.county + item.address.city + item.phone;
         return searchStr.indexOf(this.filter.toLowerCase()) != -1;
       });
       this.filterLength = elements.length;

@@ -12,6 +12,7 @@ namespace DataAccessLayer.Entities
         public string Phone { get; set; }
         public int GenderId { get; set; }
         public int UserId { get; set; }
+        public bool HasCondition { get; set; }
 
         public Gender Gender { get; set; }
         public User User { get; set; }

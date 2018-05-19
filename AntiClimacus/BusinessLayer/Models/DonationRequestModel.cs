@@ -11,6 +11,11 @@ namespace BusinessLayer.Models
         public bool Active { get; set; }
         public StatusModel Status { get; set; }
 
+        public DonationRequestModel()
+        {
+
+        }
+
         public DonationRequestModel(DonationRequest donationRequest)
         {
             Id = donationRequest.Id;
@@ -18,10 +23,6 @@ namespace BusinessLayer.Models
             Date = donationRequest.Date;
             Active = donationRequest.Active;
             Status = donationRequest.Status == null ? new StatusModel(donationRequest.StatusId) : new StatusModel(donationRequest.Status);
-        }
-
-        public DonationRequestModel()
-        {
-        }
+        } 
     }
 }

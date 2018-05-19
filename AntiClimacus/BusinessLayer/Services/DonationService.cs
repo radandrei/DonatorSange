@@ -61,6 +61,37 @@ namespace BusinessLayer.Services
             return new List<DonorModel>();
         }
 
+        public void SubmitDonationFromDonor(int donorId, List<BloodComponentQuantityModel> bloodComponents, bool diseases)
+        {
+            var donorData = donorDataRepository.GetByDonorId(donorId);
+            var bloodComponentTypes = bloodComponentRepository.GetAllTypes();
+            donorData.Donor.DonationRequests.FirstOrDefault(x => x.Active == true).StatusId = 4;
+            var requestId = donorData.Donor.DonationRequests.FirstOrDefault(x => x.Active == true).Id;
+            donorData.Donor.HasCondition =diseases ;
+            var bankId = donorData.Donor.User.MedicalUnit.BloodBankId;
+            var today = DateTime.Today;
+
+            List<BloodDonation> donations = new List<BloodDonation>();
+
+
+            foreach (var component in bloodComponents)
+            {
+                var componentType = bloodComponentTypes.FirstOrDefault(x => x.BloodComponentId == component.BloodComponent.Id && x.BloodTypeId == donorData.BloodTypeId);
+
+                donations.Add(new BloodDonation()
+                {
+                    BloodBankId = bankId,
+                    DateAdded = today,
+                    DonationRequestId = requestId,
+                    Quantity = component.Quantity,
+                    BloodComponentTypeId = componentType.Id
+                });
+            }
+
+            donorDataRepository.AddOrUpdate(donorData);
+            bloodComponentRepository.SubmitDonations(donations);
+        }
+
         public void SubmitDonorData(DonorDataModel model,int donorId)
         {
             var donorData = new DonorData()

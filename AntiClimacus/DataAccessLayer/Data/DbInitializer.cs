@@ -226,9 +226,9 @@ namespace DataAccessLayer.Data
 
             var bloodComponentTypes = new List<BloodComponentType>();
 
-            for (int i = 1; i <= 3; i++)
+            for (int i = 1; i <= bloodComponents.Count; i++)
             {
-                for (int j = i; j <= 4; j++)
+                for (int j = 1; j <= bloodTypes.Count; j++)
                 {
                     bloodComponentTypes.Add(new BloodComponentType()
                     {

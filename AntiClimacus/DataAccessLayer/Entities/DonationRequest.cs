@@ -13,7 +13,7 @@ namespace DataAccessLayer.Entities
         public int StatusId { get; set; }
         public bool Active { get; set; }
 
-        public Donation Donation { get; set; }
+        public ICollection<BloodDonation> BloodDonations { get; set; }
         public Status Status { get; set; }
         public Donor Donor { get; set; }
     }

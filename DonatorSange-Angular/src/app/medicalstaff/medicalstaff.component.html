@@ -65,7 +65,7 @@
         <mat-cell *cdkCellDef="let row">
           <button mat-button  *ngIf = "row.donationRequest.status.id==1" (click)="eligibilityDialog(row.id)" style="background-color:#a319be;color:white;display: inline-block;">Resolve eligibility</button>
           <button mat-button *ngIf = "row.donationRequest.status.id==2" (click)="donationDialog(row.id)" style="background-color:#a319be;color:white;display: inline-block;">Complete Donation</button>
-          <button mat-button *ngIf = "row.donationRequest.status.id==3" (click)="donationDialog(row.id)" style="background-color:#a319be;color:white;display: inline-block;">Prepare transfustion</button>
+          <button mat-button *ngIf = "row.donationRequest.status.id==3" (click)="donationDialog(row.id)" style="background-color:#a319be;color:white;display: inline-block;">Prepare transfusion</button>
           <div *ngIf = "row.donationRequest.status.id==5" >Not eligible for donation</div>
         </mat-cell>
       </ng-container>

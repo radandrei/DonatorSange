@@ -59,6 +59,8 @@ import { DoctorComponent } from './doctor/doctor.component';
 import { MedicalstaffComponent } from './medicalstaff/medicalstaff.component';
 import { MedicalstaffRequestsComponent } from './medicalstaff-requests/medicalstaff-requests.component';
 import { DialogVerifyEligibility } from './dialogs/eligibilityVerification';
+import { DonationService } from './services/donation.service';
+import { DialogBloodDonation } from './dialogs/bloodDonation';
 
 @NgModule({
   exports: [
@@ -107,7 +109,8 @@ export class DemoMaterialModule {}
     DoctorComponent, 
     MedicalstaffComponent,
     MedicalstaffRequestsComponent,
-    DialogVerifyEligibility 
+    DialogVerifyEligibility,
+    DialogBloodDonation 
   ],
   imports: [
     BrowserModule,
@@ -128,8 +131,8 @@ export class DemoMaterialModule {}
         useClass:AntiClimacusInterceptor,
         multi:true
     },
-    UserService,ConfigService],
+    UserService,ConfigService, DonationService],
   bootstrap: [AppComponent],
-  entryComponents: [DialogVerifyEligibility]
+  entryComponents: [DialogVerifyEligibility, DialogBloodDonation]
 })
 export class AppModule { }

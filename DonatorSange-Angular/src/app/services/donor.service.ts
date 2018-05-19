@@ -61,8 +61,7 @@ export class DonorService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
     
-    const body=JSON.stringify(donor);
-    return this.http.post(this.DonorUrl+"/updateDonor",body,httpOptions);
+    return this.http.post(this.DonorUrl+"/submitDonorData",donor,httpOptions);
 
   }
 }

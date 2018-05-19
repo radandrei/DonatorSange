@@ -1,6 +1,7 @@
 ﻿using DataAccessLayer.Data;
 using DataAccessLayer.Entities;
 using DataAccessLayer.RepositoryInterfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,6 +66,11 @@ namespace DataAccessLayer.Repositories
         public List<DonorData> GetAll()
         {
             throw new NotImplementedException();
+        }
+
+        public DonorData GetByDonorId(int donorId)
+        {
+            return context.DonorData.Where(x => x.DonorId == donorId).Include(y=>y.Donor.User.MedicalUnit).Include(x=>x.Donor.DonationRequests).FirstOrDefault();
         }
 
         public DonorData GetById(int Id)

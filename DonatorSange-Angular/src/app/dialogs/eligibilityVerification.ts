@@ -62,7 +62,7 @@ export class DialogVerifyEligibility {
     this.donorData.diseases=!diseases;
     
     this.donor.donorData=this.donorData;
-    this.donorService.updateDonor(this.donorData).subscribe(
+    this.donorService.updateDonor(this.donor).subscribe(
       response => {
         window.location.reload();
         alert("Data updated!");
