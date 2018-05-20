@@ -20,7 +20,28 @@ namespace DataAccessLayer.Repositories
 
         public Donor AddOrUpdate(Donor entity)
         {
-            throw new NotImplementedException();
+            if (entity.Id == 0)
+            {
+                //add donor
+                context.Donors.Add(entity);
+                context.SaveChanges();
+                return entity;
+            }
+            else
+            {
+                //update donor
+                var donor = context.Donors.SingleOrDefault(add => add.Id == entity.Id);
+                if (donor == null)
+                    return null;
+                donor.Email = entity.Email;
+                donor.GenderId = entity.GenderId;
+                donor.Phone = entity.Phone;
+                donor.UserId = entity.UserId;
+                donor.AddressId = entity.AddressId;
+                context.Donors.Update(donor);
+                context.SaveChanges();
+                return donor;
+            }
         }
 
         public void Delete(int Id)

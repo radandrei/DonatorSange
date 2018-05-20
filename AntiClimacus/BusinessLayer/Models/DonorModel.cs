@@ -18,17 +18,23 @@ namespace BusinessLayer.Models
         public DonationRequestModel DonationRequest { get; set; }
         public UserModel User { get; set; }
 
+        public DonorModel()
+        {
+
+        }
         public DonorModel(Donor donor)
         {
             Id = donor.Id;
             Address = new AddressModel(donor.Address);
-            Gender = new GenderModel(donor.Gender);
+            Gender = new GenderModel();
+            Gender.Id = donor.Gender.Id;
+            Gender.Name = donor.Gender.Name;
             Phone = donor.Phone;
             Email = donor.Email;
-            DonorData = new DonorDataModel(donor.DonorData);
+            DonorData = donor.DonorData == null ? null : new DonorDataModel(donor.DonorData);
             User = new UserModel(donor.User);
             var donationRequest = donor.DonationRequests.FirstOrDefault(d => d.Active == true);
-            DonationRequest = donationRequest==null ? new DonationRequestModel() : new DonationRequestModel(donationRequest);
+            DonationRequest = donationRequest == null ? new DonationRequestModel() : new DonationRequestModel(donationRequest);
         }
     }
 }

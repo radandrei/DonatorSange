@@ -7,10 +7,9 @@ namespace BusinessLayer.Models
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public GenderModel(Gender gender)
+        public GenderModel()
         {
-            Id = gender.Id;
-            Name = gender.Name;
+
         }
     }
 }

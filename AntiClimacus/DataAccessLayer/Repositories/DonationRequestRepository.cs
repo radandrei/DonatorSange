@@ -19,7 +19,28 @@ namespace DataAccessLayer.Repositories
 
         public DonationRequest AddOrUpdate(DonationRequest entity)
         {
-            throw new NotImplementedException();
+            if (entity.Id == 0)
+            {
+                //add donation Request
+                context.DonationRequests.Add(entity);
+                context.SaveChanges();
+                return entity;
+            }
+            else
+            {
+                //update donation Request
+                var donationRequest = context.DonationRequests.SingleOrDefault(add => add.Id == entity.Id);
+                if (donationRequest == null)
+                    return null;
+                donationRequest.Active = entity.Active;
+                donationRequest.Date = entity.Date;
+                donationRequest.DonorId = entity.DonorId;
+                donationRequest.RecipientName = entity.RecipientName;
+                donationRequest.StatusId = entity.StatusId;
+                context.DonationRequests.Update(donationRequest);
+                context.SaveChanges();
+                return donationRequest;
+            }
         }
 
         public void Delete(int Id)

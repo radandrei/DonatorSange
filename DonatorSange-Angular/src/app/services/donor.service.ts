@@ -31,7 +31,7 @@ export class DonorService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-
+    console.log(body);
     return this.http.post<Donor>(this.DonorUrl + "/add", body, httpOptions);
 
   }
