@@ -11,11 +11,5 @@ namespace BusinessLayer.Models
         {
 
         }
-
-        public GenderModel(Gender gender)
-        {
-            Id = gender.Id;
-            Name = gender.Name;
-        }
     }
 }

@@ -1,0 +1,21 @@
+
+.header-part{
+    width:100%;
+    height: 7%;
+    position:absolute;
+    top:0;
+    right:0;
+    background-color:  rgb(114, 187, 216);
+    border-color: #cfcfcf;
+    border-bottom:#000000 2px solid;
+    z-index: 1;
+}
+
+
+.logout-button{
+    top:25%;
+    right:4%;
+    position:absolute;
+    background-color:rgb(115, 26, 133);
+    color:white;
+}

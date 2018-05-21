@@ -16,11 +16,12 @@ namespace AntiClimacus.Controllers
     {
         private readonly IDonationService donationService;
         private readonly IDonationRequestService donationRequestService;
-
-        public DonationController(IDonationService donationService, IDonationRequestService donationRequestService)
+        private readonly IDonorService donorService;
+        public DonationController(IDonationService donationService, IDonationRequestService donationRequestService, IDonorService donorService)
         {
             this.donationService = donationService;
             this.donationRequestService = donationRequestService;
+            this.donorService = donorService;
         }
 
         // GET: api/Donation/getdonors/5
@@ -146,5 +147,21 @@ namespace AntiClimacus.Controllers
         public void Delete(int id)
         {
         }
+
+        // POST: api/Donation
+        [HttpPost("add")]
+        public IActionResult Donate([FromBody]DonorModel model)
+        {
+            try
+            {
+                donorService.RegisterDonor(model);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return new BadRequestObjectResult(ex);
+            }
+        }
+
     }
 }

@@ -64,7 +64,7 @@ export class UserService extends BaseService {
     urlSearchParams.append('password', password);
     // let body = urlSearchParams.toString();
     let body = JSON.stringify({ username, password });
-
+console.log(body);
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };

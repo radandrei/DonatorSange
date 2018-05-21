@@ -61,6 +61,7 @@ import { MedicalstaffRequestsComponent } from './medicalstaff-requests/medicalst
 import { DialogVerifyEligibility } from './dialogs/eligibilityVerification';
 import { DonationService } from './services/donation.service';
 import { DialogBloodDonation } from './dialogs/bloodDonation';
+import { DonorComponent } from './donor/donor.component';
 
 @NgModule({
   exports: [
@@ -107,6 +108,7 @@ export class DemoMaterialModule {}
     RegistrationFormComponent,
     LoginFormComponent,
     DoctorComponent, 
+    DonorComponent,
     MedicalstaffComponent,
     MedicalstaffRequestsComponent,
     DialogVerifyEligibility,

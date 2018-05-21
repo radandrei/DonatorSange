@@ -13,3 +13,12 @@ C:\Users\pici\Documents\DonatorSange\AntiClimacus\DataAccessLayer\obj\Debug\netc
 C:\Users\pici\Documents\DonatorSange\AntiClimacus\DataAccessLayer\obj\Debug\netcoreapp2.0\DataAccessLayer.AssemblyInfo.cs
 C:\Users\pici\Documents\DonatorSange\AntiClimacus\DataAccessLayer\obj\Debug\netcoreapp2.0\DataAccessLayer.dll
 C:\Users\pici\Documents\DonatorSange\AntiClimacus\DataAccessLayer\obj\Debug\netcoreapp2.0\DataAccessLayer.pdb
+C:\Users\Roxana\Documents\DonatorSange\AntiClimacus\DataAccessLayer\bin\Debug\netcoreapp2.0\DataAccessLayer.deps.json
+C:\Users\Roxana\Documents\DonatorSange\AntiClimacus\DataAccessLayer\bin\Debug\netcoreapp2.0\DataAccessLayer.dll
+C:\Users\Roxana\Documents\DonatorSange\AntiClimacus\DataAccessLayer\bin\Debug\netcoreapp2.0\DataAccessLayer.pdb
+C:\Users\Roxana\Documents\DonatorSange\AntiClimacus\DataAccessLayer\obj\Debug\netcoreapp2.0\DataAccessLayer.csprojAssemblyReference.cache
+C:\Users\Roxana\Documents\DonatorSange\AntiClimacus\DataAccessLayer\obj\Debug\netcoreapp2.0\DataAccessLayer.csproj.CoreCompileInputs.cache
+C:\Users\Roxana\Documents\DonatorSange\AntiClimacus\DataAccessLayer\obj\Debug\netcoreapp2.0\DataAccessLayer.AssemblyInfoInputs.cache
+C:\Users\Roxana\Documents\DonatorSange\AntiClimacus\DataAccessLayer\obj\Debug\netcoreapp2.0\DataAccessLayer.AssemblyInfo.cs
+C:\Users\Roxana\Documents\DonatorSange\AntiClimacus\DataAccessLayer\obj\Debug\netcoreapp2.0\DataAccessLayer.dll
+C:\Users\Roxana\Documents\DonatorSange\AntiClimacus\DataAccessLayer\obj\Debug\netcoreapp2.0\DataAccessLayer.pdb

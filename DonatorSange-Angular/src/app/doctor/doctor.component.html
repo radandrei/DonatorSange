@@ -1,3 +1,166 @@
-<p>
-  doctor works!
-</p>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Doctor</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+        <script src="form.js"></script>
+		<style>
+html{    
+    background:url('https://img00.deviantart.net/7607/i/2011/023/6/2/stock_gradient_red_white_by_einstud-d37ux9r.jpg') no-repeat;
+    background-size: cover;
+    height:100%;
+  }
+  body
+  {
+      font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  }
+table {
+    width:100%;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 15px;
+    text-align: left;
+}
+table#t01 tr:nth-child(even) {
+    background-color: #eee;
+}
+table#t01 tr:nth-child(odd) {
+   background-color: #fff;
+}
+table#t01 th {
+    background-color: black;
+    color: white;
+}
+</style>
+    </head>
+    <body >
+        <div class="container">
+          
+<div><br></div>
+<div><br></div>
+<div><br></div>
+<div><br></div>
+		<h1 style="text-align: center;">THE DOCTOR'S PAGE</h1>
+            <div id="form-main">
+                <div id="form-div">
+                    <form class="montform" id="reused_form" >
+                        
+						<div class="BloodType">
+						<div><b>Blood Type</b></div>
+                            <select class="feedback-input" >
+							
+							<option value="trombocite" >Trombocite</option>
+							<option value="globulerosii" >Globule Rosii</option>
+							<option value="plasma">Plasma</option>
+							</select>
+                        </div>
+                        <div class="Quantity">
+						<div><b>Quantity of Blood</b></div>
+                            <input name="Quantity" type="text" required class="feedback-input" id="Quantity" placeholder="Quantity" />
+                        </div>
+						
+						 
+						 <div class="HospitalName">
+						 <div><b>Hospital Name</b></div>
+						 <input name="HospitalName" type="text" required class="feedback-input" id="HospitalName" placeholder="Hospital Name" />
+						 </div>
+                            
+                        
+                        <div class="submit">
+                            <button type="submit" class="button-blue">SUBMIT</button>
+                            <div class="ease"></div>
+                        </div>
+						
+                    </form>
+                    <div id="error_message" style="width:100%; height:100%; display:none; ">
+                        <h4>
+                            Error
+                        </h4>
+                        Sorry there was an error sending your form. 
+                    </div>
+                    <div id="success_message" style="width:100%; height:100%; display:none; "> <h2>Success! Your Message was Sent Successfully.</h2> </div>
+                </div>
+				<div><br></div>
+				<div><br></div>
+				<div><br></div>
+				<div><br></div>
+					<div><br></div>
+				<div><br></div>
+				<div><br></div>
+				<div><br></div>
+					<div><br></div>
+				<div><br></div>
+				<div><br></div>
+				<div><br></div>
+					<div><br></div>
+				<div><br></div>
+				<div><br></div>
+				<div><br></div>
+					<div><br></div>
+				<div><br></div>
+				<div><br></div>
+				<div><br></div>
+					<div><br></div>
+				<div><br></div>
+				<div><br></div>
+				<div><br></div>
+					<div><br></div>
+				<div><br></div>
+				<div><br></div>
+				<div><br></div>
+					<div><br></div>
+				<div><br></div>
+				<div><br></div>
+				<div><br></div>
+					
+				<div><br></div>
+				<div><br></div>
+				<div><br></div>
+					<div><br></div>
+				<div><br></div>
+				<div><br></div>
+				<div><br></div>
+					<div><br></div>
+				<div><br></div>
+				<h1 style="text-align:center;"><br>BLOOD DEMAND STATUS</h1>
+				<div><br></div>
+				<div><br></div>
+				<div><br></div>
+				<div><br></div>
+				<div><br></div>
+				<table id="t01">
+  <tr>
+    <th></th>
+    <th>BloodType1</th> 
+    <th>BloodType2</th>
+	<th>BloodType3</th>
+  </tr>
+  <tr>
+    <td><b>Actual Quantity</b></td>
+    <td>10L</td>
+    <td>15L</td>
+	<td>12L</td>
+  </tr>
+  <tr>
+    <td><b>Needed Quantity</b></td>
+    <td>25L</td>
+    <td>94L</td>
+	<td>78L</td>
+  </tr>
+</table>
+<div><br></div>
+				<div><br></div>
+				<div><br></div>
+				<div><br></div>
+            </div>
+        </div>
+    </body>
+</html>

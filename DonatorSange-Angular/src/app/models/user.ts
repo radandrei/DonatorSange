@@ -10,5 +10,12 @@ export class User{
     firstName:string;
     lastName:string;
     medicalUnit:MedicalUnit;
-    constructor(id:number,username:string,role:Role,donor:Donor,address:Address){}
+    constructor(id:number,username:string,role:Role,firstName:string, lastName:string,medicalUnit:MedicalUnit){
+        this.id = id;
+        this.username = username;
+        this.role = role;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.medicalUnit = medicalUnit;
+    }
 }

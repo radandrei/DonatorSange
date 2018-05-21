@@ -1,0 +1,39 @@
+<div class="login-page">
+  <div class="logo"></div>
+  <div class="form">
+    <form class="login-form" [formGroup]="donorForm" novalidate enctype="multipart/form-data">
+      <input [(ngModel)]="donorModel.user.firstName" type="text" placeholder="First Name" [ngModelOptions]="{standalone: true}"/>
+      <input [(ngModel)]="donorModel.user.lastName" type="text" placeholder="Last Name" [ngModelOptions]="{standalone: true}"/>
+      <select [(ngModel)]="donorModel.gender" [ngModelOptions]="{standalone: true}">
+        <option [ngValue]="gender" *ngFor="let gender of genders">{{gender.name}}</option>
+      </select>
+      <input [(ngModel)]="donorModel.birthdate" formControlName="birthdate" type="date" placeholder="Birthdate"/>
+      <div *ngIf="showErrorMessage(donorForm,'birthdate', 'required')" class="attention">Birthdate is required</div>
+      <input [(ngModel)]="donorModel.address.city" formControlName="city" type="text" placeholder="City"/>
+      <div *ngIf="showErrorMessage(donorForm,'city', 'required')" class="attention">City is required</div>
+      <input [(ngModel)]="donorModel.address.county" formControlName="county" type="text" placeholder="County"/>
+      <div *ngIf="showErrorMessage(donorForm,'county', 'required')" class="attention">County is required</div>
+      <select [(ngModel)]="donorModel.address.country" [ngModelOptions]="{standalone: true}">
+        <option [value]="country" *ngFor="let country of countries">{{country}}</option>
+      </select>
+      <input [(ngModel)]="donorModel.address.street" formControlName="street" type="text" placeholder="Street"/>
+      <div *ngIf="showErrorMessage(donorForm,'street', 'required')" class="attention">Street is required</div>
+      <input [(ngModel)]="donorModel.address.number" formControlName="number" type="number" placeholder="Number"/>
+      <div *ngIf="showErrorMessage(donorForm,'number', 'required')" class="attention">Number is required</div>
+      <hr>
+      <input [(ngModel)]="donorModel.email" type="email" formControlName="email" placeholder="Email"/>
+      <div *ngIf="showErrorMessage(donorForm,'email', 'required')" class="attention">Email is required</div>
+      <div *ngIf="showErrorMessage(donorForm,'email', 'email')" class="attention">Email must be in correct format</div>
+      <input [(ngModel)]="donorModel.phone" type="text" formControlName="phone" placeholder="Phone"/>
+      <div *ngIf="showErrorMessage(donorForm,'phone', 'required')" class="attention">Phone is required</div>
+      <label>
+        <input [(ngModel)]="hasRecipientName" type="checkbox" [ngModelOptions]="{standalone: true}" style="font-family: sans-serif; color: black">
+        I want to donate for sombody
+      </label>
+      <input *ngIf="hasRecipientName" [ngModelOptions]="{standalone: true}"  [(ngModel)]="donorModel.donationRequest.RecipientName" type="text" placeholder="Recipient Name" />
+      <button type='submit' (click)='donate()' [disabled]="donorForm.invalid">Donez</button>
+      <h2 *ngIf="isSucceded == false" style="color:red">Error</h2>
+      <h2 *ngIf="isSucceded == true" style="color:green">Success</h2>
+    </form>
+  </div>
+</div>
