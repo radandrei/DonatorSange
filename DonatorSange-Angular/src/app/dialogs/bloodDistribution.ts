@@ -21,7 +21,7 @@ export class DialogDistribution {
       this.request=request;
     }
     )
-    this.requestService.getBloodComponentTypeQuantity(data.bloodComponentTypeId).subscribe(quantity=>{
+    this.requestService.getBloodComponentTypeQuantity(data.bloodComponentTypeId,data.medicalUnitId).subscribe(quantity=>{
       this.depositedQuantity=quantity;
     })
   }

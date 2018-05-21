@@ -8,6 +8,11 @@ namespace BusinessLayer.Models
         public BloodTypeModel BloodType { get; set; }
         public BloodComponentModel BloodComponent { get; set; }
 
+        public BloodComponentTypeModel()
+        {
+            
+        }
+
         public BloodComponentTypeModel (BloodComponentType blood)
         {
             Id = blood.Id;

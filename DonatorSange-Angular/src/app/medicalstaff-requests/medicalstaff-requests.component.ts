@@ -12,29 +12,29 @@ import { DialogDistribution } from '../dialogs/bloodDistribution';
   selector: 'app-medicalstaff-requests',
   templateUrl: './medicalstaff-requests.component.html',
   styleUrls: ['./medicalstaff-requests.component.css'],
-  providers:[RequestService]
+  providers: [RequestService]
 })
 export class MedicalstaffRequestsComponent implements OnInit {
 
-  displayedColumns = ['firstName', 'lastName', 'county','city','bloodComponentType','priority','quantity','status'];
+  displayedColumns = ['firstName', 'lastName', 'county', 'city', 'bloodComponentType', 'priority', 'quantity', 'status', 'actions'];
   database: Database | null;
   dataSource: DataSourceMedicalRequest | null;
   selectedMedicalRequest: number;
   user = JSON.parse(localStorage.getItem('myUser'));
- 
+
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild('filter') filter: ElementRef;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(http: HttpClient, private MedicalRequestService: RequestService, public dialog: MatDialog, private router:Router) {
-    this.database = new Database(http, this.MedicalRequestService,router);
+  constructor(http: HttpClient, private MedicalRequestService: RequestService, public dialog: MatDialog, private router: Router) {
+    this.database = new Database(http, this.MedicalRequestService, router);
   }
 
 
-  distributionDialog(id:number,idComponentType:number) {
+  distributionDialog(id: number, idComponentType: number, medicalUnitId: number) {
     let dialogRef;
-    dialogRef = this.dialog.open(DialogDistribution, { width: '50%',height:'80%',data:{requestId:id,bloodComponentTypeId:idComponentType} });
+    dialogRef = this.dialog.open(DialogDistribution, { width: '50%', height: '80%', data: { requestId: id, bloodComponentTypeId: idComponentType, medicalUnitId: medicalUnitId} });
   }
 
 
@@ -64,12 +64,12 @@ export class MedicalstaffRequestsComponent implements OnInit {
   }
 
 
-  isDoctor(role){
-    return (role=='Doctor');
+  isDoctor(role) {
+    return (role == 'Doctor');
   }
 
-  isPatient(role){
-    return (role=='Patient');
+  isPatient(role) {
+    return (role == 'Patient');
   }
 
   ngOnInit() {
@@ -102,11 +102,13 @@ export class Database {
   dataChange: BehaviorSubject<MedicalRequest[]> = new BehaviorSubject<MedicalRequest[]>([]);
   get data(): MedicalRequest[] { return this.dataChange.value; }
 
-  constructor(private http: HttpClient, MedicalService: RequestService, private router:Router) {
+  constructor(private http: HttpClient, MedicalService: RequestService, private router: Router) {
     this.user = JSON.parse(localStorage.getItem('myMedicalRequest'));
     MedicalService.getAllMedicalRequests()
       .subscribe(
-        MedicalRequests => { this.addMedicalRequests(MedicalRequests) },
+        MedicalRequests => {
+          this.addMedicalRequests(MedicalRequests);
+        },
         error => {
           if (error.status == 403)
             this.router.navigateByUrl("login");
@@ -155,7 +157,7 @@ export class DataSourceMedicalRequest extends DataSource<any> {
     return Observable.merge(...displayDataChanges).map(() => {
       const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
       const elements = this._database.data.filter((item: MedicalRequest) => {
-        let searchStr = item.user.firstName+item.user.firstName+item.medicalUnit.address.city;
+        let searchStr = item.user.firstName + item.user.firstName + item.medicalUnit.address.city;
         return searchStr.indexOf(this.filter.toLowerCase()) != -1;
       });
       this.filterLength = elements.length;
@@ -176,7 +178,7 @@ export class DataSourceMedicalRequest extends DataSource<any> {
         case 'lastName': [propertyA, propertyB] = [(a.user.lastName), (b.user.lastName)]; break;
         case 'county': [propertyA, propertyB] = [(a.medicalUnit.address.county), (b.medicalUnit.address.county)]; break;
         case 'city': [propertyA, propertyB] = [(a.medicalUnit.address.city), (b.medicalUnit.address.city)]; break;
-        case 'bloodComponentType': [propertyA, propertyB] = [(a.bloodComponentType.bloodComponent.name + a.bloodComponentType.bloodType.name), (b.bloodComponentType.bloodComponent.name+b.bloodComponentType.bloodType.name)]; break;
+        case 'bloodComponentType': [propertyA, propertyB] = [(a.bloodComponentType.bloodComponent.name + a.bloodComponentType.bloodType.name), (b.bloodComponentType.bloodComponent.name + b.bloodComponentType.bloodType.name)]; break;
         case 'priority': [propertyA, propertyB] = [(a.priority), (b.priority)]; break;
         case 'status': [propertyA, propertyB] = [(a.requestStatus.name), (b.requestStatus.name)]; break;
       }

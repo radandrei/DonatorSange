@@ -119,6 +119,7 @@ namespace AntiClimacus
             services.AddScoped<IBloodTypeRepository, BloodTypeRepository>();
             services.AddScoped<IBloodComponentRepository, BloodComponentRepository>();
             services.AddScoped<IDonorDataRepository, DonorDataRepository>();
+            services.AddScoped<IMedicalRequestRepository, MedicalRequestRepository>();
             services.AddScoped<IAddressRepository, AddressRepository>();
 
             services.AddTransient<IDonationService, DonationService>();
@@ -127,8 +128,8 @@ namespace AntiClimacus
             services.AddTransient<IDonationRequestService, DonationRequestService>();
             services.AddTransient<IAddressService, AddressService>();
             services.AddTransient<IDonorService, DonorService>();
+            services.AddTransient<IMedicalRequestService, MedicalRequestService>();
             services.AddMvc();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

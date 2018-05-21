@@ -38,7 +38,7 @@ export class DonationService {
     }
 
     submit(donorId: number, bloodComponents: Array<BloodComponentQuantity>, diseases: boolean): Observable<boolean> {
-        debugger
+        
         var donation = new DonorBloodDonation(donorId, bloodComponents, diseases);
 
         return this.http.post<boolean>(this.DonationUrl + "/submitbloodcomponents/", donation);

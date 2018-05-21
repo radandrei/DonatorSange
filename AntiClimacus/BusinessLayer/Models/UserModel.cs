@@ -29,7 +29,8 @@ namespace BusinessLayer.Models
                 Username = user.Username;
                 FirstName = user.FirstName;
                 LastName = user.LastName;
-                Role = new RoleModel(user.Role);
+                if (user.Role != null)
+                    Role = new RoleModel(user.Role);
                 if (withUnit)
                 {
                     MedicalUnit = new MedicalUnitModel(user.MedicalUnit);

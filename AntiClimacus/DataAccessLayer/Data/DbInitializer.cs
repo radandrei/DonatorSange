@@ -109,6 +109,29 @@ namespace DataAccessLayer.Data
                 RoleId = 1
             });
 
+            _context.Users.Add(new User()
+            {
+                Username = "dragos",
+                Password = "$KCOA$V1$10000$bRyC0Ll5o+5iHbKMDkgR1Dfqj73bu6RTRUz3viH234lBxGn5",
+                FirstName = "Dragos",
+                LastName = "Onet",
+                MedicalUnitId = 1,
+                RoleId = 2
+            });
+
+            _context.RequestStatuses.AddRange(
+                new List<RequestStatus>()
+                {
+                    new RequestStatus()
+                    {
+                        Name="Preparing"
+                    },
+                    new RequestStatus()
+                    {
+                        Name="Complete"
+                    }
+                });
+
             _context.SaveChanges();
 
             _context.Genders.Add(new Gender()
@@ -175,7 +198,7 @@ namespace DataAccessLayer.Data
                 Weight = 60,
                 BloodTypeId = 1,
                 BloodPressure = 150,
-                Birthdate=new DateTime(1997,1,14),
+                Birthdate = new DateTime(1997, 1, 14),
                 Diseases = false,
                 FeminineProblems = false,
                 Heartbeat = 90,
@@ -187,15 +210,18 @@ namespace DataAccessLayer.Data
             var bloodComponents = new List<BloodComponent>() {
                 new BloodComponent()
                 {
-                    Name="Trombocyte"
+                    Name="Trombocyte",
+                    Lifetime=5
                 },
                 new BloodComponent()
                 {
-                    Name="Red blood cell"
+                    Name="Red blood cell",
+                    Lifetime=42
                 },
                 new BloodComponent()
                 {
-                    Name="Plasma"
+                    Name="Plasma",
+                    Lifetime=150
                 }
             };
 

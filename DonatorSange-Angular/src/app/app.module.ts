@@ -62,6 +62,7 @@ import { DialogVerifyEligibility } from './dialogs/eligibilityVerification';
 import { DonationService } from './services/donation.service';
 import { DialogBloodDonation } from './dialogs/bloodDonation';
 import { DonorComponent } from './donor/donor.component';
+import { DialogDistribution } from './dialogs/bloodDistribution';
 
 @NgModule({
   exports: [
@@ -112,7 +113,8 @@ export class DemoMaterialModule {}
     MedicalstaffComponent,
     MedicalstaffRequestsComponent,
     DialogVerifyEligibility,
-    DialogBloodDonation 
+    DialogBloodDonation,
+    DialogDistribution 
   ],
   imports: [
     BrowserModule,
@@ -135,6 +137,6 @@ export class DemoMaterialModule {}
     },
     UserService,ConfigService, DonationService],
   bootstrap: [AppComponent],
-  entryComponents: [DialogVerifyEligibility, DialogBloodDonation]
+  entryComponents: [DialogVerifyEligibility, DialogBloodDonation, DialogDistribution]
 })
 export class AppModule { }

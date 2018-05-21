@@ -8,6 +8,7 @@ namespace DataAccessLayer.Entities
     {
         public int Id { get; set; }
         public int Quantity { get; set; }
+        public int QuantityDonated { get; set; }
         public int BloodComponentTypeId { get; set; }
         public int Priority { get; set; }
         public int MedicalUnitId { get; set; }

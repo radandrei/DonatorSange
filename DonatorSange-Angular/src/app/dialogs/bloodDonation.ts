@@ -26,14 +26,21 @@ export class DialogBloodDonation {
                 this.bloodComponents.forEach(element => {
                     this.componentQuantities.push(new BloodComponentQuantity(element, 0))
                 });
-                this.diseases=false;
             }
         );
     }
 
-    save() {
-        console.log(this.diseases);
-        this.donationService.submit(this.donorId, this.componentQuantities, this.diseases).subscribe();
+    save(diseases) {
+        this.donationService.submit(this.donorId, this.componentQuantities, diseases).subscribe(
+            response => {
+                window.location.reload();
+                alert("Data updated!");
+              },
+              error => {
+                alert("Data update issue!");
+              }
+        );
+
     }
 
 }

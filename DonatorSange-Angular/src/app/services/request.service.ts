@@ -5,6 +5,8 @@ import { Observable } from 'rxjs/Rx';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MedicalRequest } from '../models/medicalrequest';
+import { ComponentMedicalUnit } from '../models/componentMedicalUnit';
+import { RequestWithQuantity } from '../models/requestWithQuantity';
 
 
 
@@ -56,21 +58,16 @@ export class RequestService {
   }
 
   getRequest(id:number|string):Observable<MedicalRequest>{
-    return this.http.get<MedicalRequest>(this.MedicalRequestUrl+"/getRequest");
+    return this.http.get<MedicalRequest>(this.MedicalRequestUrl+"/getRequest/" + id);
   }
 
   updateRequest(request:MedicalRequest,distributionQuantity:number){
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-
-    let data={
-      "request":request,
-      "distributonQuantity":distributionQuantity
-    }
     
-    const body=JSON.stringify(data);
-    return this.http.post(this.MedicalRequestUrl+"/updateRequest",body,httpOptions);
+    let model = new RequestWithQuantity(request,distributionQuantity);
+    return this.http.post(this.MedicalRequestUrl+"/updateRequest",model,httpOptions);
   }
 
   addMedicalRequest(request: MedicalRequest): Observable<boolean> {
@@ -80,8 +77,12 @@ export class RequestService {
     return this.http.post<boolean>(this.MedicalRequestUrl + "/addMedicalRequest", request, httpOptions);
   }
 
-  getBloodComponentTypeQuantity(bloodComponentTypeId):Observable<number>{
-    return this.http.get<number>(this.MedicalRequestUrl+"/getBCTQuantity/"+bloodComponentTypeId);
+  getBloodComponentTypeQuantity(bloodComponentTypeId, medicalUnitId):Observable<number>{
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    let model = new ComponentMedicalUnit(bloodComponentTypeId,medicalUnitId);
+    return this.http.post<number>(this.MedicalRequestUrl+"/getBCTQuantity",model,httpOptions);
   }
 
 }

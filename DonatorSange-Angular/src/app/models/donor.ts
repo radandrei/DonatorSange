@@ -13,11 +13,11 @@ export class Donor{
     donorData:DonorData;
     donationRequest:DonationRequest;
     user:User;
+    
     static initialize(){
         let donor = new Donor();
         donor.id = 0;
         donor.address = Address.initialize();
-        donor.birthdate = new Date(1990, 10, 10);
         donor.donationRequest = DonationRequest.initialize();
         donor.donorData = null;
         donor.email = null;

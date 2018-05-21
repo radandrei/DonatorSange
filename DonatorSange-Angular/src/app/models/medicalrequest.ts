@@ -12,4 +12,5 @@ export class MedicalRequest{
     requestStatus:RequestStatus;
     user:User;
     medicalUnit:MedicalUnit;
+    quantityDonated: number;
 }
