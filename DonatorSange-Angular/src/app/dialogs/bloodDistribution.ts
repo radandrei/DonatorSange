@@ -16,9 +16,11 @@ export class DialogDistribution {
     request:MedicalRequest;
     depositedQuantity:number;
     confirmation;
+    remainder;
   constructor(public dialogRef: MatDialogRef<DialogDistribution>,public requestService:RequestService,@Inject(MAT_DIALOG_DATA) public data: any) {
     this.requestService.getRequest(data.requestId).subscribe(request=>{
       this.request=request;
+      this.remainder = request.quantity-request.quantityDonated;
     }
     )
     this.requestService.getBloodComponentTypeQuantity(data.bloodComponentTypeId,data.medicalUnitId).subscribe(quantity=>{
